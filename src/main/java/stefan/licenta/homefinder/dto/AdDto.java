@@ -8,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class AdDto {
+    private Long id;
     private String title;
     private String adType;
     private String description;
