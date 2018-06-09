@@ -98,7 +98,8 @@ public class UserService {
 
     public List<AdDto> getAllAdsWithFirstImage() {
         List<AdDto> adDtoList = new ArrayList<>();
-        List<Ad> adList = adRepository.findAll();
+//        List<Ad> adList = adRepository.findAll();
+        List<Ad> adList = adRepository.findAllByOrderByDateDesc();
         for(Ad i : adList) {
             System.out.println(i.getAdId());
             AdDto adDto = new AdDto();
