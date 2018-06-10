@@ -71,7 +71,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/dummypost").authenticated()
+//                .antMatchers(HttpMethod.POST,"/getAdImages").authenticated()
                 .antMatchers(HttpMethod.POST,"/getUserData").authenticated()
                 .antMatchers(HttpMethod.POST,"/auth").permitAll()
                 .antMatchers(HttpMethod.POST, "/signup").permitAll()
@@ -135,7 +135,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         authenticationPath,
                         "/signup",
                         "/newAdImages",
-                        "/adsWithImages"
+                        "/adsWithImages",
+                        "/getAdImages"
                 )
 
                 // allow anonymous resource requests

@@ -73,4 +73,14 @@ public class UserController {
     public List<AdDto> getAllAdsWithFirstImage() {
         return userService.getAllAdsWithFirstImage();
     }
+
+    @PostMapping("/getAdInfo")
+    public AdDetailsDto getAdInfo(@RequestBody Long adId) {
+        return userService.getAdInfo(adId);
+    }
+
+    @PostMapping("/getAdImages")
+    public List<String> getAdImages(@RequestBody Long adId) {
+        return userService.getAdImages(adId);
+    }
 }

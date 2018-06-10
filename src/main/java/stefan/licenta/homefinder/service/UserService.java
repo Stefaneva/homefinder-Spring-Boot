@@ -123,4 +123,39 @@ public class UserService {
         }
         return adDtoList;
     }
+
+    public AdDetailsDto getAdInfo(Long adId) {
+        AdDetailsDto adDetailsDto = new AdDetailsDto();
+        Ad ad = adRepository.findById(adId).get();
+        List<AdImage> images = adImageRepository.findAllByAdId(ad);
+        List<String> encodedImages = new ArrayList<>();
+        for(AdImage adImage: images) {
+            String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
+            encodedImages.add(encodeImage);
+        }
+        adDetailsDto.setId(ad.getAdId());
+        adDetailsDto.setTitle(ad.getTitle());
+        adDetailsDto.setDescription(ad.getDescription());
+        adDetailsDto.setAdType(ad.getAdTranzactionType());
+        adDetailsDto.setAdItemType(ad.getAdType());
+        adDetailsDto.setPrice(ad.getPrice());
+        adDetailsDto.setRooms(ad.getRoomNumber());
+        adDetailsDto.setSurface(ad.getSurface());
+        adDetailsDto.setLat(ad.getLat());
+        adDetailsDto.setLng(ad.getLng());
+        adDetailsDto.setUserDetails(ad.getUserId());
+        adDetailsDto.setImage(encodedImages);
+        return adDetailsDto;
+    }
+
+    public List<String> getAdImages(Long adId) {
+        Ad ad = adRepository.findById(adId).get();
+        List<AdImage> images = adImageRepository.findAllByAdId(ad);
+        List<String> encodedImages = new ArrayList<>();
+        for(AdImage adImage: images) {
+            String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
+            encodedImages.add(encodeImage);
+        }
+        return encodedImages;
+    }
 }
