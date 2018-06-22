@@ -136,7 +136,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/signup",
                         "/newAdImages",
                         "/adsWithImages",
-                        "/getAdImages"
+                        "/getAdImages",
+                        "/getAdInfo"
                 )
 
                 // allow anonymous resource requests
