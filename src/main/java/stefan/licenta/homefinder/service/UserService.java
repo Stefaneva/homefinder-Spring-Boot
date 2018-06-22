@@ -137,7 +137,13 @@ public class UserService {
         adDetailsDto.setSurface(ad.getSurface());
         adDetailsDto.setLat(ad.getLat());
         adDetailsDto.setLng(ad.getLng());
-        adDetailsDto.setUserDetails(ad.getUserId());
+        UserDto newUserDto = new UserDto();
+        newUserDto.setName(ad.getUserId().getUsername());
+        newUserDto.setMail(ad.getUserId().getEmail());
+        newUserDto.setPhone(ad.getUserId().getPhone());
+        newUserDto.setUserType(ad.getUserId().getType());
+        newUserDto.setLastLoginDate(ad.getUserId().getLastLoginDate().toString());
+        adDetailsDto.setUserDetails(newUserDto);
         return adDetailsDto;
     }
 

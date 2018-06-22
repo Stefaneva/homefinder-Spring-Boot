@@ -23,6 +23,6 @@ public class AdDetailsDto {
     private String adItemType;
     private Double lat;
     private Double lng;
-    private User userDetails;
+    private UserDto userDetails;
 //    private List<String> image;
 }
