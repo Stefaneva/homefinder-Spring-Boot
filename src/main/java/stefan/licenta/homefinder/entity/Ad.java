@@ -1,5 +1,6 @@
 package stefan.licenta.homefinder.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class Ad {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long adId;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "iduser", nullable = false,
             foreignKey = @ForeignKey(name = "fk_iduser"))
