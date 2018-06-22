@@ -14,7 +14,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "anunturi")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Ad {
 
     @Id
