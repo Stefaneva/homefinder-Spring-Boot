@@ -127,12 +127,6 @@ public class UserService {
     public AdDetailsDto getAdInfo(Long adId) {
         AdDetailsDto adDetailsDto = new AdDetailsDto();
         Ad ad = adRepository.findById(adId).get();
-        List<AdImage> images = adImageRepository.findAllByAdId(ad);
-        List<String> encodedImages = new ArrayList<>();
-        for(AdImage adImage: images) {
-            String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
-            encodedImages.add(encodeImage);
-        }
         adDetailsDto.setId(ad.getAdId());
         adDetailsDto.setTitle(ad.getTitle());
         adDetailsDto.setDescription(ad.getDescription());
@@ -144,7 +138,6 @@ public class UserService {
         adDetailsDto.setLat(ad.getLat());
         adDetailsDto.setLng(ad.getLng());
         adDetailsDto.setUserDetails(ad.getUserId());
-        adDetailsDto.setImage(encodedImages);
         return adDetailsDto;
     }
 

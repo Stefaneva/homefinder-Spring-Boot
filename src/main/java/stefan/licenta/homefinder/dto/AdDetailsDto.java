@@ -22,5 +22,5 @@ public class AdDetailsDto {
     private Double lat;
     private Double lng;
     private User userDetails;
-    private List<String> image;
+//    private List<String> image;
 }
