@@ -21,7 +21,7 @@ public class Ad {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long adId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "iduser", nullable = false,
             foreignKey = @ForeignKey(name = "fk_iduser"))
     private User userId;
