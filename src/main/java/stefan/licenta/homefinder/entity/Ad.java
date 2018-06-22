@@ -14,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "anunturi")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Ad {
 
     @Id
@@ -21,7 +22,6 @@ public class Ad {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long adId;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "iduser", nullable = false,
             foreignKey = @ForeignKey(name = "fk_iduser"))
