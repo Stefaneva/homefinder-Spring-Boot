@@ -126,7 +126,7 @@ public class UserService {
     public List<AdDto> getUserAds(EmailDto emailDto) {
         List<AdDto> adDtoList = new ArrayList<>();
         User currentUser = userRepository.findByEmail(emailDto.getEmail());
-        List<Ad> adList = adRepository.findAllByUserId(currentUser);
+        List<Ad> adList = adRepository.findAllByUserIdOrderByDateDesc(currentUser);
         for(Ad i : adList) {
             AdDto adDto = new AdDto();
             AdImage adImage = adImageRepository.findFirstByAdId(i);
