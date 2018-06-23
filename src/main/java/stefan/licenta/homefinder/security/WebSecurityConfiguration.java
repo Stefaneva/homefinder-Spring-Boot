@@ -78,6 +78,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/trainings").permitAll()
                 .antMatchers(HttpMethod.GET,"/reportByMonth").permitAll()
                 .antMatchers(HttpMethod.POST,"/newAd").authenticated()
+                .antMatchers(HttpMethod.POST, "/getUserAds").authenticated()
                 // TODO: for local testing
 //                    .antMatchers("/crapa").permitAll()
 //                    .antMatchers("/pendingTrainings").permitAll()
@@ -153,8 +154,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/topAllAttendees",
                         "/genderStats",
                         "/attendedTrainings",
-                        "/reportByMonth",
-                        "/getUserAds"
+                        "/reportByMonth"
                 );
     }
 }
