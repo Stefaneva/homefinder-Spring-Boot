@@ -98,7 +98,6 @@ public class UserService {
 
     public List<AdDto> getAllAdsWithFirstImage() {
         List<AdDto> adDtoList = new ArrayList<>();
-//        List<Ad> adList = adRepository.findAll();
         List<Ad> adList = adRepository.findAllByOrderByDateDesc();
         for(Ad i : adList) {
             System.out.println(i.getAdId());
@@ -107,6 +106,33 @@ public class UserService {
             if(adImage != null) {
                 String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
                 adDto.setImage(encodeImage);
+            }
+            adDto.setId(i.getAdId());
+            adDto.setTitle(i.getTitle());
+            adDto.setAdType(i.getAdTranzactionType());
+            adDto.setAdItemType(i.getAdType());
+            adDto.setDescription(i.getDescription());
+            adDto.setLat(i.getLat());
+            adDto.setLng(i.getLng());
+            adDto.setPrice(i.getPrice());
+            adDto.setSurface(i.getSurface());
+            adDto.setRooms(i.getRoomNumber());
+            adDto.setUserEmail(i.getUserId().getEmail());
+            adDtoList.add(adDto);
+        }
+        return adDtoList;
+    }
+
+    public List<AdDto> getUserAds(String email) {
+        List<AdDto> adDtoList = new ArrayList<>();
+        User currentUser = userRepository.findByEmail(email);
+        List<Ad> adList = adRepository.findAllByUserIdOrderByDateDesc(currentUser);
+        for(Ad i : adList) {
+            AdDto adDto = new AdDto();
+            AdImage adImage = adImageRepository.findFirstByAdId(i);
+            if(adImage != null) {
+                String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
+//                adDto.setImage(encodeImage);
             }
             adDto.setId(i.getAdId());
             adDto.setTitle(i.getTitle());
