@@ -76,7 +76,6 @@ public class UserController {
 
     @PostMapping("/getUserAds")
     public List<AdDto> getUserAds(@RequestBody EmailDto userEmail) {
-        System.out.println(userEmail.getEmail());
         return userService.getUserAds(userEmail);
     }
 
