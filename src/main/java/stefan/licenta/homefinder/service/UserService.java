@@ -123,16 +123,18 @@ public class UserService {
         return adDtoList;
     }
 
-    public List<AdDto> getUserAds(String email) {
+    public List<AdDto> getUserAds(EmailDto emailDto) {
         List<AdDto> adDtoList = new ArrayList<>();
-        User currentUser = userRepository.findByEmail(email);
-        List<Ad> adList = adRepository.findAllByUserIdOrderByDateDesc(currentUser);
+        System.out.println(emailDto.getEmail());
+        User currentUser = userRepository.findByEmail(emailDto.getEmail());
+        System.out.println(currentUser);
+        List<Ad> adList = adRepository.findAllByUserId(currentUser);
         for(Ad i : adList) {
             AdDto adDto = new AdDto();
             AdImage adImage = adImageRepository.findFirstByAdId(i);
             if(adImage != null) {
                 String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
-//                adDto.setImage(encodeImage);
+                adDto.setImage(encodeImage);
             }
             adDto.setId(i.getAdId());
             adDto.setTitle(i.getTitle());
