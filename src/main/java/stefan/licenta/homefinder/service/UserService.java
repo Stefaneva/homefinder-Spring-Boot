@@ -14,6 +14,8 @@ import stefan.licenta.homefinder.entity.UserType;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -85,6 +87,7 @@ public class UserService {
         newAd.setUserId(userRepository.findByEmail(newAdDto.getUserEmail()));
         newAd.setLat(newAdDto.getLat());
         newAd.setLng(newAdDto.getLng());
+        newAd.setDate(new Date());
         if(newAdDto.getUploadFiles().size() > 0) {
             for(MultipartFile file : newAdDto.getUploadFiles()) {
                 AdImage adImage = new AdImage();
