@@ -88,4 +88,9 @@ public class UserController {
     public List<String> getAdImages(@RequestBody Long adId) {
         return userService.getAdImages(adId);
     }
+
+    @PostMapping("/deleteAd")
+    public void deleteAd(@RequestBody Long adId) {
+        userService.deleteAdById(adId);
+    }
 }

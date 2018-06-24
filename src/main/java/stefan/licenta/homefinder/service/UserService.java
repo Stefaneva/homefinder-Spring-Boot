@@ -183,4 +183,8 @@ public class UserService {
         }
         return encodedImages;
     }
+
+    public void deleteAdById(Long adId) {
+        adRepository.deleteById(adId);
+    }
 }
