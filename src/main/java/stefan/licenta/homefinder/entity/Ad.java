@@ -57,4 +57,16 @@ public class Ad {
     @Column(name = "create_date")
     private Date date;
 
+    @Column(name = "suprafatateren")
+    private Integer areaSurface;
+
+    @Column(name = "confort")
+    private Integer comfort;
+
+    @Column(name = "etaj")
+    private Integer floorLevel;
+
+    @Column(name = "compartimentare")
+    private String partitioning;
+
 }

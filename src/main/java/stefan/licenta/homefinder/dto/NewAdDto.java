@@ -21,6 +21,10 @@ public class NewAdDto {
     private Double lat;
     private Double lng;
     private String userEmail;
+    private String partitioning;
+    private Integer Comfort;
+    private Integer floorLevel;
+    private Integer areaSurface;
     private List<MultipartFile> uploadFiles;
 
     @Override

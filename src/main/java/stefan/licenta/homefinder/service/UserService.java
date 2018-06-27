@@ -88,6 +88,7 @@ public class UserService {
         newAd.setLat(newAdDto.getLat());
         newAd.setLng(newAdDto.getLng());
         newAd.setDate(new Date());
+        newAd.setSurface(newAdDto.getSurface());
         if(newAdDto.getUploadFiles().size() > 0) {
             for(MultipartFile file : newAdDto.getUploadFiles()) {
                 AdImage adImage = new AdImage();

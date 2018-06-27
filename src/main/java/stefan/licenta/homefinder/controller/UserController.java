@@ -51,7 +51,11 @@ public class UserController {
                                 @RequestParam("surface") String surface,
                                 @RequestParam("lat") String lat,
                                 @RequestParam("lng") String lng,
-                                @RequestParam("userEmail") String userEmail) throws IOException {
+                                @RequestParam("userEmail") String userEmail,
+                                @RequestParam("partitioning") String partitioning,
+                                @RequestParam("comfort") Integer comfort,
+                                @RequestParam("floorLevel") Integer floorLevel,
+                                @RequestParam("areaSurface") Integer areaSurface) throws IOException {
 
         userService.setUploadFiles(images);
         NewAdDto newAdDto = new NewAdDto();
@@ -66,6 +70,10 @@ public class UserController {
         newAdDto.setLng(Double.parseDouble(lng));
         newAdDto.setUserEmail(userEmail);
         newAdDto.setUploadFiles(images);
+        newAdDto.setPartitioning(partitioning);
+        newAdDto.setComfort(comfort);
+        newAdDto.setFloorLevel(floorLevel);
+        newAdDto.setAreaSurface(areaSurface);
         userService.saveAdInfo(newAdDto);
     }
 
