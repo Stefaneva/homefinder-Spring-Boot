@@ -64,7 +64,7 @@ public class Ad {
     private Integer comfort;
 
     @Column(name = "etaj")
-    private Integer floorLevel;
+    private String floorLevel;
 
     @Column(name = "compartimentare")
     private String partitioning;

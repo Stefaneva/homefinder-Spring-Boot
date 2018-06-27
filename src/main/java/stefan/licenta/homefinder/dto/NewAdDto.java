@@ -23,7 +23,7 @@ public class NewAdDto {
     private String userEmail;
     private String partitioning;
     private Integer Comfort;
-    private Integer floorLevel;
+    private String floorLevel;
     private Integer areaSurface;
     private List<MultipartFile> uploadFiles;
 

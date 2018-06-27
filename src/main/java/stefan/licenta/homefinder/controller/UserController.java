@@ -54,7 +54,7 @@ public class UserController {
                                 @RequestParam("userEmail") String userEmail,
                                 @RequestParam("partitioning") String partitioning,
                                 @RequestParam("comfort") Integer comfort,
-                                @RequestParam("floorLevel") Integer floorLevel,
+                                @RequestParam("floorLevel") String floorLevel,
                                 @RequestParam("areaSurface") Integer areaSurface) throws IOException {
 
         userService.setUploadFiles(images);
