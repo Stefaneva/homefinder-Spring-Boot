@@ -22,7 +22,8 @@ public class NewAdDto {
     private Double lng;
     private String userEmail;
     private String partitioning;
-    private Integer Comfort;
+    private Integer comfort;
+    private String furnished;
     private String floorLevel;
     private Integer areaSurface;
     private Integer yearBuilt;

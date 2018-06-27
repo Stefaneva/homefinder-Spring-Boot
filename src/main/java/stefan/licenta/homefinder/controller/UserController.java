@@ -56,7 +56,8 @@ public class UserController {
                                 @RequestParam("comfort") Integer comfort,
                                 @RequestParam("floorLevel") String floorLevel,
                                 @RequestParam("areaSurface") Integer areaSurface,
-                                @RequestParam("yearBuilt") Integer yearBuilt) throws IOException {
+                                @RequestParam("yearBuilt") Integer yearBuilt,
+                                @RequestParam("furnished") String furnished) throws IOException {
 
         userService.setUploadFiles(images);
         NewAdDto newAdDto = new NewAdDto();
@@ -75,6 +76,7 @@ public class UserController {
         newAdDto.setComfort(comfort);
         newAdDto.setFloorLevel(floorLevel);
         newAdDto.setAreaSurface(areaSurface);
+        newAdDto.setFurnished(furnished);
         newAdDto.setYearBuilt(yearBuilt);
         userService.saveAdInfo(newAdDto);
     }

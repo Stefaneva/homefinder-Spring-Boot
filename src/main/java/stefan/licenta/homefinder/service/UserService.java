@@ -91,6 +91,8 @@ public class UserService {
         newAd.setSurface(newAdDto.getSurface());
         newAd.setFloorLevel(newAdDto.getFloorLevel());
         newAd.setComfort(newAdDto.getComfort());
+        newAd.setPartitioning(newAdDto.getPartitioning());
+        newAd.setFurnished(newAdDto.getFurnished());
         newAd.setYearBuilt(newAdDto.getYearBuilt());
         if(newAdDto.getUploadFiles().size() > 0) {
             for(MultipartFile file : newAdDto.getUploadFiles()) {

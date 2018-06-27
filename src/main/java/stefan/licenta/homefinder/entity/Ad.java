@@ -71,4 +71,7 @@ public class Ad {
 
     @Column(name = "an_constructie")
     private Integer yearBuilt;
+
+    @Column(name = "tip_imobil")
+    private String furnished;
 }
