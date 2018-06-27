@@ -25,6 +25,7 @@ public class NewAdDto {
     private Integer Comfort;
     private String floorLevel;
     private Integer areaSurface;
+    private Integer yearBuilt;
     private List<MultipartFile> uploadFiles;
 
     @Override

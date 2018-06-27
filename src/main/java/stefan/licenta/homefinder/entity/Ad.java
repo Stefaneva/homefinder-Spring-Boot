@@ -69,4 +69,6 @@ public class Ad {
     @Column(name = "compartimentare")
     private String partitioning;
 
+    @Column(name = "an_constructie")
+    private Integer yearBuilt;
 }
