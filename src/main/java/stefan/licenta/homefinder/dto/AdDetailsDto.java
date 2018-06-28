@@ -24,5 +24,10 @@ public class AdDetailsDto {
     private Double lat;
     private Double lng;
     private UserDto userDetails;
-//    private List<String> image;
+    private String partitioning;
+    private Integer comfort;
+    private String furnished;
+    private String floorLevel;
+    private Integer areaSurface;
+    private Integer yearBuilt;
 }

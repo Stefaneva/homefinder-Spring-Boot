@@ -127,6 +127,12 @@ public class UserService {
             adDto.setSurface(i.getSurface());
             adDto.setRooms(i.getRoomNumber());
             adDto.setUserEmail(i.getUserId().getEmail());
+            adDto.setPartitioning(i.getPartitioning());
+            adDto.setComfort(i.getComfort());
+            adDto.setFurnished(i.getFurnished());
+            adDto.setFloorLevel(i.getFloorLevel());
+            adDto.setAreaSurface(i.getAreaSurface());
+            adDto.setYearBuilt(i.getYearBuilt());
             adDtoList.add(adDto);
         }
         return adDtoList;
@@ -154,6 +160,12 @@ public class UserService {
             adDto.setSurface(i.getSurface());
             adDto.setRooms(i.getRoomNumber());
             adDto.setUserEmail(i.getUserId().getEmail());
+            adDto.setPartitioning(i.getPartitioning());
+            adDto.setComfort(i.getComfort());
+            adDto.setFurnished(i.getFurnished());
+            adDto.setFloorLevel(i.getFloorLevel());
+            adDto.setAreaSurface(i.getAreaSurface());
+            adDto.setYearBuilt(i.getYearBuilt());
             adDtoList.add(adDto);
         }
         return adDtoList;
@@ -172,6 +184,12 @@ public class UserService {
         adDetailsDto.setSurface(ad.getSurface());
         adDetailsDto.setLat(ad.getLat());
         adDetailsDto.setLng(ad.getLng());
+        adDetailsDto.setPartitioning(ad.getPartitioning());
+        adDetailsDto.setComfort(ad.getComfort());
+        adDetailsDto.setFurnished(ad.getFurnished());
+        adDetailsDto.setFloorLevel(ad.getFloorLevel());
+        adDetailsDto.setAreaSurface(ad.getAreaSurface());
+        adDetailsDto.setYearBuilt(ad.getYearBuilt());
         UserDto newUserDto = new UserDto();
         newUserDto.setName(ad.getUserId().getUsername());
         newUserDto.setMail(ad.getUserId().getEmail());

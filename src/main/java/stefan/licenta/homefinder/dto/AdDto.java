@@ -20,4 +20,10 @@ public class AdDto {
     private Double lng;
     private String userEmail;
     private String image;
+    private String partitioning;
+    private Integer comfort;
+    private String furnished;
+    private String floorLevel;
+    private Integer areaSurface;
+    private Integer yearBuilt;
 }
