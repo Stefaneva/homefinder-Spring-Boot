@@ -89,6 +89,7 @@ public class UserService {
         newAd.setLng(newAdDto.getLng());
         newAd.setDate(new Date());
         newAd.setSurface(newAdDto.getSurface());
+        newAd.setAreaSurface(newAdDto.getAreaSurface());
         newAd.setFloorLevel(newAdDto.getFloorLevel());
         newAd.setComfort(newAdDto.getComfort());
         newAd.setPartitioning(newAdDto.getPartitioning());
