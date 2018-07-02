@@ -137,9 +137,8 @@ public class UserService {
             AdDto adDto = new AdDto();
             AdImage adImage = adImageRepository.findFirstByAdId(i);
             if(adImage != null) {
-//                String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
-//                adDto.setImage(encodeImage);
-                adDto.setImage(adImage.getImage());
+                String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
+                adDto.setImage(encodeImage);
             }
             adDto.setId(i.getAdId());
             adDto.setTitle(i.getTitle());
@@ -171,9 +170,8 @@ public class UserService {
             AdDto adDto = new AdDto();
             AdImage adImage = adImageRepository.findFirstByAdId(i);
             if(adImage != null) {
-//                String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
-//                adDto.setImage(encodeImage);
-                adImage.setImage(adImage.getImage());
+                String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
+                adDto.setImage(encodeImage);
             }
             adDto.setId(i.getAdId());
             adDto.setTitle(i.getTitle());
