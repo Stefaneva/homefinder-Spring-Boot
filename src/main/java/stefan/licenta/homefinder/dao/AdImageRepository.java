@@ -1,11 +1,13 @@
 package stefan.licenta.homefinder.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import stefan.licenta.homefinder.entity.Ad;
 import stefan.licenta.homefinder.entity.AdImage;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -15,5 +17,8 @@ public interface AdImageRepository extends JpaRepository<AdImage, Long> {
 
     AdImage findFirstByAdId(Ad adId);
 
-    void deleteAllByAdId(Ad adId);
+    @Transactional
+    @Modifying
+    @Query("delete from AdImage e where e.adId.adId = ?1")
+    void deleteAllByAdId(Long adId);
 }

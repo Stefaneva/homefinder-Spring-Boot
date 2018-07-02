@@ -112,11 +112,10 @@ public class UserService {
     private void saveImages(List<MultipartFile> images, Ad adId) {
         for(MultipartFile file : images) {
             AdImage adImage = new AdImage();
-            byte[] image = new byte[0];
+            adImage.setAdId(adId);
             try {
-                image = file.getBytes();
+                byte[] image = file.getBytes();
                 adImage.setImage(image);
-                adImage.setAdId(adId);
                 adImageRepository.save(adImage);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -126,7 +125,7 @@ public class UserService {
 
     public void replaceImages(Long adId, List<MultipartFile> images) {
         Ad ad = adRepository.findById(adId).get();
-        adImageRepository.deleteAllByAdId(ad);
+        adImageRepository.deleteAllByAdId(ad.getAdId());
         this.saveImages(images, ad);
     }
 
