@@ -272,7 +272,10 @@ public class UserService {
         List<AdDto> adDtoList = new ArrayList<>();
         User user = userRepository.findByEmail(userEmail);
         List<Ad> adList = new ArrayList<>();
-        user.getFavorites().forEach(favorite -> adList.add(favorite.getAd()));
+        user.getFavorites().forEach(favorite -> {
+            System.out.println(favorite.getAd().getAdId());
+            adList.add(favorite.getAd());
+        });
         adList.forEach(ad -> {
             adDtoList.add(this.adDtoBuilder(ad));
         });

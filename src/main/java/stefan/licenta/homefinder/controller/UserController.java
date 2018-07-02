@@ -100,7 +100,7 @@ public class UserController {
 
     @PostMapping("saveFavorite")
     public void saveFavorite(@RequestBody FavoriteDto favoriteDto) {
-
+        userService.saveFavorite(favoriteDto);
     }
 
     @PostMapping("/adsWithImages")
