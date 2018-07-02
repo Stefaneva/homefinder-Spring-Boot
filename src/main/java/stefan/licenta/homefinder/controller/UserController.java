@@ -84,7 +84,7 @@ public class UserController {
     @PostMapping("/replaceAdImages")
     public void replaceImages(@RequestParam("fileUpload") List<MultipartFile> images,
                               @RequestParam("adId") Long adId) {
-
+        userService.replaceImages(adId, images);
     }
 
     @PostMapping("/adsWithImages")

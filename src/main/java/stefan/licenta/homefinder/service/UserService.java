@@ -122,7 +122,7 @@ public class UserService {
         }
     }
 
-    public void replaceImages(Long adId, List<MultipartFile> images) throws IOException {
+    public void replaceImages(Long adId, List<MultipartFile> images) {
         Ad ad = adRepository.findById(adId).get();
         adImageRepository.deleteAllByAdId(ad);
         this.saveImages(images, ad);
