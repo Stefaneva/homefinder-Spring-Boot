@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -48,4 +49,8 @@ public class User {
     @JsonIgnore
     @Column(name="current_login_date")
     private Date currentLoginDate;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",cascade ={CascadeType.ALL}, orphanRemoval = true)
+    private Set<Favorite> favorites;
 }

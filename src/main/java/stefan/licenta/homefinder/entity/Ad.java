@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -74,4 +75,8 @@ public class Ad {
 
     @Column(name = "tip_imobil")
     private String furnished;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "ad",cascade ={CascadeType.ALL}, orphanRemoval = true)
+    private Set<Favorite> favorites;
 }
