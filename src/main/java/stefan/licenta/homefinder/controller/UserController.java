@@ -81,6 +81,12 @@ public class UserController {
         userService.saveAdInfo(newAdDto);
     }
 
+    @PostMapping("/replaceAdImages")
+    public void replaceImages(@RequestParam("fileUpload") List<MultipartFile> images,
+                              @RequestParam("adId") Long adId) {
+
+    }
+
     @PostMapping("/adsWithImages")
     public List<AdDto> getAllAdsWithFirstImage() {
         return userService.getAllAdsWithFirstImage();

@@ -14,4 +14,6 @@ public interface AdImageRepository extends JpaRepository<AdImage, Long> {
     List<AdImage> findAllByAdId(Ad adId);
 
     AdImage findFirstByAdId(Ad adId);
+
+    void deleteAllByAdId(Ad adId);
 }

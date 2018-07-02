@@ -96,14 +96,36 @@ public class UserService {
         newAd.setFurnished(newAdDto.getFurnished());
         newAd.setYearBuilt(newAdDto.getYearBuilt());
         if(newAdDto.getUploadFiles().size() > 0) {
-            for(MultipartFile file : newAdDto.getUploadFiles()) {
-                AdImage adImage = new AdImage();
-                byte[] image = file.getBytes();
+            this.saveImages(newAdDto.getUploadFiles(), newAd);
+//            for(MultipartFile file : newAdDto.getUploadFiles()) {
+//                AdImage adImage = new AdImage();
+//                byte[] image = file.getBytes();
+//                adImage.setImage(image);
+//                adImage.setAdId(newAd);
+//                adImageRepository.save(adImage);
+//            }
+        }
+    }
+
+    private void saveImages(List<MultipartFile> images, Ad adId) {
+        for(MultipartFile file : images) {
+            AdImage adImage = new AdImage();
+            byte[] image = new byte[0];
+            try {
+                image = file.getBytes();
                 adImage.setImage(image);
-                adImage.setAdId(newAd);
+                adImage.setAdId(adId);
                 adImageRepository.save(adImage);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
+    }
+
+    public void replaceImages(Long adId, List<MultipartFile> images) throws IOException {
+        Ad ad = adRepository.findById(adId).get();
+        adImageRepository.deleteAllByAdId(ad);
+        this.saveImages(images, ad);
     }
 
     public List<AdDto> getAllAdsWithFirstImage() {
@@ -114,8 +136,9 @@ public class UserService {
             AdDto adDto = new AdDto();
             AdImage adImage = adImageRepository.findFirstByAdId(i);
             if(adImage != null) {
-                String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
-                adDto.setImage(encodeImage);
+//                String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
+//                adDto.setImage(encodeImage);
+                adDto.setImage(adImage.getImage());
             }
             adDto.setId(i.getAdId());
             adDto.setTitle(i.getTitle());
@@ -147,8 +170,9 @@ public class UserService {
             AdDto adDto = new AdDto();
             AdImage adImage = adImageRepository.findFirstByAdId(i);
             if(adImage != null) {
-                String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
-                adDto.setImage(encodeImage);
+//                String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
+//                adDto.setImage(encodeImage);
+                adImage.setImage(adImage.getImage());
             }
             adDto.setId(i.getAdId());
             adDto.setTitle(i.getTitle());
@@ -215,4 +239,6 @@ public class UserService {
     public void deleteAdById(Long adId) {
         adRepository.deleteById(adId);
     }
+
+
 }

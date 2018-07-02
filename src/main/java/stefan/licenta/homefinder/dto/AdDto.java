@@ -19,7 +19,8 @@ public class AdDto {
     private Double lat;
     private Double lng;
     private String userEmail;
-    private String image;
+//    private String image;
+    private byte[] image;
     private String partitioning;
     private Integer comfort;
     private String furnished;
