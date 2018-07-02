@@ -5,12 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import stefan.licenta.homefinder.dao.AdImageRepository;
 import stefan.licenta.homefinder.dao.AdRepository;
+import stefan.licenta.homefinder.dao.FavoriteRepository;
 import stefan.licenta.homefinder.dao.UserRepository;
 import stefan.licenta.homefinder.dto.*;
-import stefan.licenta.homefinder.entity.Ad;
-import stefan.licenta.homefinder.entity.AdImage;
-import stefan.licenta.homefinder.entity.User;
-import stefan.licenta.homefinder.entity.UserType;
+import stefan.licenta.homefinder.entity.*;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
@@ -28,12 +26,17 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
     private AdImageRepository adImageRepository;
     private List<MultipartFile> uploadFiles;
+    private FavoriteRepository favoriteRepository;
 
-    public UserService(UserRepository userRepository, AdRepository adRepository, PasswordEncoder passwordEncoder, AdImageRepository adImageRepository) {
+
+    public UserService(UserRepository userRepository, AdRepository adRepository,
+                       PasswordEncoder passwordEncoder, AdImageRepository adImageRepository,
+                       FavoriteRepository favoriteRepository) {
         this.userRepository = userRepository;
         this.adRepository = adRepository;
         this.passwordEncoder = passwordEncoder;
         this.adImageRepository = adImageRepository;
+        this.favoriteRepository = favoriteRepository;
     }
 
     public void setUploadFiles(List<MultipartFile> files) {
@@ -184,35 +187,39 @@ public class UserService {
         return adDtoList;
     }
 
+    public AdDto adDtoBuilder(Ad i) {
+        AdDto adDto = new AdDto();
+        AdImage adImage = adImageRepository.findFirstByAdId(i);
+        if(adImage != null) {
+            String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
+            adDto.setImage(encodeImage);
+        }
+        adDto.setId(i.getAdId());
+        adDto.setTitle(i.getTitle());
+        adDto.setAdType(i.getAdTranzactionType());
+        adDto.setAdItemType(i.getAdType());
+        adDto.setDescription(i.getDescription());
+        adDto.setLat(i.getLat());
+        adDto.setLng(i.getLng());
+        adDto.setPrice(i.getPrice());
+        adDto.setSurface(i.getSurface());
+        adDto.setRooms(i.getRoomNumber());
+        adDto.setUserEmail(i.getUserId().getEmail());
+        adDto.setPartitioning(i.getPartitioning());
+        adDto.setComfort(i.getComfort());
+        adDto.setFurnished(i.getFurnished());
+        adDto.setFloorLevel(i.getFloorLevel());
+        adDto.setAreaSurface(i.getAreaSurface());
+        adDto.setYearBuilt(i.getYearBuilt());
+        return adDto;
+    }
+
     public List<AdDto> getUserAds(EmailDto emailDto) {
         List<AdDto> adDtoList = new ArrayList<>();
         User currentUser = userRepository.findByEmail(emailDto.getEmail());
         List<Ad> adList = adRepository.findAllByUserIdOrderByDateDesc(currentUser);
         for(Ad i : adList) {
-            AdDto adDto = new AdDto();
-            AdImage adImage = adImageRepository.findFirstByAdId(i);
-            if(adImage != null) {
-                String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
-                adDto.setImage(encodeImage);
-            }
-            adDto.setId(i.getAdId());
-            adDto.setTitle(i.getTitle());
-            adDto.setAdType(i.getAdTranzactionType());
-            adDto.setAdItemType(i.getAdType());
-            adDto.setDescription(i.getDescription());
-            adDto.setLat(i.getLat());
-            adDto.setLng(i.getLng());
-            adDto.setPrice(i.getPrice());
-            adDto.setSurface(i.getSurface());
-            adDto.setRooms(i.getRoomNumber());
-            adDto.setUserEmail(i.getUserId().getEmail());
-            adDto.setPartitioning(i.getPartitioning());
-            adDto.setComfort(i.getComfort());
-            adDto.setFurnished(i.getFurnished());
-            adDto.setFloorLevel(i.getFloorLevel());
-            adDto.setAreaSurface(i.getAreaSurface());
-            adDto.setYearBuilt(i.getYearBuilt());
-            adDtoList.add(adDto);
+            adDtoList.add(this.adDtoBuilder(i));
         }
         return adDtoList;
     }
@@ -261,5 +268,14 @@ public class UserService {
         adRepository.deleteById(adId);
     }
 
-
+    public List<AdDto> getAllFavorites(String userEmail) {
+        List<AdDto> adDtoList = new ArrayList<>();
+        User user = userRepository.findByEmail(userEmail);
+        List<Ad> adList = new ArrayList<>();
+        user.getFavorites().forEach(favorite -> adList.add(favorite.getAd()));
+        adList.forEach(ad -> {
+            adDtoList.add(this.adDtoBuilder(ad));
+        });
+        return adDtoList;
+    }
 }

@@ -92,6 +92,11 @@ public class UserController {
         userService.updateAdInfo(adDto);
     }
 
+    @PostMapping("getFavoriteAds")
+    public List<AdDto> getFavouriteAds(@RequestBody EmailDto userEmail) {
+        return userService.getAllFavorites(userEmail.getEmail());
+    }
+
     @PostMapping("/adsWithImages")
     public List<AdDto> getAllAdsWithFirstImage() {
         return userService.getAllAdsWithFirstImage();
