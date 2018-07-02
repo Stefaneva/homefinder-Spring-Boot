@@ -87,6 +87,11 @@ public class UserController {
         userService.replaceImages(Long.parseLong(adId), images);
     }
 
+    @PostMapping("/replaceAdInfo")
+    public void replaceAdInfo(@RequestBody AdDto adDto) {
+        userService.updateAdInfo(adDto);
+    }
+
     @PostMapping("/adsWithImages")
     public List<AdDto> getAllAdsWithFirstImage() {
         return userService.getAllAdsWithFirstImage();

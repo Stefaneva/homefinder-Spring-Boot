@@ -129,6 +129,28 @@ public class UserService {
         this.saveImages(images, ad);
     }
 
+    public void updateAdInfo(AdDto adDto) {
+        Ad ad = adRepository.findById(adDto.getId()).get();
+        ad.setTitle(adDto.getTitle());
+        ad.setDescription(adDto.getDescription());
+        ad.setAdTranzactionType(adDto.getAdType());
+        ad.setAdType(adDto.getAdItemType());
+        ad.setPrice(adDto.getPrice());
+        ad.setRoomNumber(adDto.getRooms());
+        ad.setSurface(adDto.getSurface());
+        ad.setUserId(userRepository.findByEmail(adDto.getUserEmail()));
+        ad.setLat(adDto.getLat());
+        ad.setLng(adDto.getLng());
+        ad.setSurface(adDto.getSurface());
+        ad.setAreaSurface(adDto.getAreaSurface());
+        ad.setFloorLevel(adDto.getFloorLevel());
+        ad.setComfort(adDto.getComfort());
+        ad.setPartitioning(adDto.getPartitioning());
+        ad.setFurnished(adDto.getFurnished());
+        ad.setYearBuilt(adDto.getYearBuilt());
+        adRepository.save(ad);
+    }
+
     public List<AdDto> getAllAdsWithFirstImage() {
         List<AdDto> adDtoList = new ArrayList<>();
         List<Ad> adList = adRepository.findAllByOrderByDateDesc();
