@@ -278,4 +278,11 @@ public class UserService {
         });
         return adDtoList;
     }
+
+    public void saveFavorite(FavoriteDto favoriteDto) {
+        Favorite favorite = new Favorite();
+        favorite.setAd(adRepository.findById(favoriteDto.getAdId()).get());
+        favorite.setUser(userRepository.findByEmail(favoriteDto.getUserEmail()));
+        favoriteRepository.save(favorite);
+    }
 }

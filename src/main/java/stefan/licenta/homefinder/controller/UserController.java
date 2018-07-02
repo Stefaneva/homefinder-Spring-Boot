@@ -1,19 +1,20 @@
 package stefan.licenta.homefinder.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import stefan.licenta.homefinder.dao.AdImageRepository;
 import stefan.licenta.homefinder.dao.AdRepository;
-import stefan.licenta.homefinder.dao.UserRepository;
 import stefan.licenta.homefinder.dto.*;
-import stefan.licenta.homefinder.entity.Ad;
-import stefan.licenta.homefinder.entity.AdImage;
-import stefan.licenta.homefinder.entity.User;
 import stefan.licenta.homefinder.service.UserService;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -95,6 +96,11 @@ public class UserController {
     @PostMapping("getFavoriteAds")
     public List<AdDto> getFavouriteAds(@RequestBody EmailDto userEmail) {
         return userService.getAllFavorites(userEmail.getEmail());
+    }
+
+    @PostMapping("saveFavorite")
+    public void saveFavorite(@RequestBody FavoriteDto favoriteDto) {
+
     }
 
     @PostMapping("/adsWithImages")
