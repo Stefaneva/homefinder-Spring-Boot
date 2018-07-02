@@ -12,6 +12,7 @@ import stefan.licenta.homefinder.entity.AdImage;
 import stefan.licenta.homefinder.entity.User;
 import stefan.licenta.homefinder.entity.UserType;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -19,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
+@Transactional
 public class UserService {
 
     private UserRepository userRepository;
