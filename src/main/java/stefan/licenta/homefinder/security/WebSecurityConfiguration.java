@@ -72,11 +72,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
 //                .antMatchers(HttpMethod.POST,"/getAdImages").authenticated()
+                .antMatchers(HttpMethod.GET,"/trainings").permitAll()
+//                .antMatchers(HttpMethod.POST,"/getAdReviews").permitAll()
+//                .antMatchers(HttpMethod.POST,"/saveAdReview").permitAll()
                 .antMatchers(HttpMethod.POST,"/getUserData").authenticated()
                 .antMatchers(HttpMethod.POST,"/auth").permitAll()
                 .antMatchers(HttpMethod.POST, "/signup").permitAll()
-                .antMatchers(HttpMethod.GET,"/trainings").permitAll()
-                .antMatchers(HttpMethod.GET,"/reportByMonth").permitAll()
                 .antMatchers(HttpMethod.POST,"/newAd").authenticated()
                 .antMatchers(HttpMethod.POST, "/getUserAds").authenticated()
                 // TODO: for local testing
@@ -128,7 +129,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         // AuthenticationTokenFilter will ignore the below paths
-        // leave only / trainings and auth after frontend login complete
+        // leave only /home and auth after frontend login complete
         web
                 .ignoring()
                 .antMatchers(
@@ -139,7 +140,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/adsWithImages",
                         "/getAdImages",
                         "/getAdInfo",
-                        "/replaceAdImages"
+                        "/replaceAdImages",
+                        "/getAdReviews",
+                        "/saveAdReview"
                 )
 
                 // allow anonymous resource requests
@@ -148,14 +151,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         HttpMethod.GET,
                         "/",
-                        "/home",
-                        "/trainings",
-                        "/topTechnicalAttendees",
-                        "/topSoftAttendees",
-                        "/topAllAttendees",
-                        "/genderStats",
-                        "/attendedTrainings",
-                        "/reportByMonth"
+                        "/home"
                 );
     }
 }

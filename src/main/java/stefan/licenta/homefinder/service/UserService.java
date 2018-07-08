@@ -3,18 +3,14 @@ package stefan.licenta.homefinder.service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import stefan.licenta.homefinder.dao.AdImageRepository;
-import stefan.licenta.homefinder.dao.AdRepository;
-import stefan.licenta.homefinder.dao.FavoriteRepository;
-import stefan.licenta.homefinder.dao.UserRepository;
+import stefan.licenta.homefinder.dao.*;
 import stefan.licenta.homefinder.dto.*;
 import stefan.licenta.homefinder.entity.*;
 
+import javax.sound.sampled.ReverbType;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -27,16 +23,17 @@ public class UserService {
     private AdImageRepository adImageRepository;
     private List<MultipartFile> uploadFiles;
     private FavoriteRepository favoriteRepository;
-
+    private ReviewRepository reviewRepository;
 
     public UserService(UserRepository userRepository, AdRepository adRepository,
                        PasswordEncoder passwordEncoder, AdImageRepository adImageRepository,
-                       FavoriteRepository favoriteRepository) {
+                       FavoriteRepository favoriteRepository, ReviewRepository reviewRepository) {
         this.userRepository = userRepository;
         this.adRepository = adRepository;
         this.passwordEncoder = passwordEncoder;
         this.adImageRepository = adImageRepository;
         this.favoriteRepository = favoriteRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     public void setUploadFiles(List<MultipartFile> files) {
@@ -287,5 +284,32 @@ public class UserService {
         favorite.setAd(adRepository.findById(favoriteDto.getAdId()).get());
         favorite.setUser(userRepository.findByEmail(favoriteDto.getUserEmail()));
         favoriteRepository.save(favorite);
+    }
+
+    public List<ReviewDtoRequest> getAdReviews(Long adId) {
+        List<Review> reviewList = reviewRepository.findAllByAd(adRepository.findById(adId).get());
+        List<ReviewDtoRequest> reviewDtoRequestList = new ArrayList<>();
+        for (Review review : reviewList) {
+            ReviewDtoRequest reviewDtoRequest = ReviewDtoRequest.builder().idReview(review.getId())
+                    .comment(review.getComment())
+                    .rating(review.getRating())
+                    .like(review.getRating())
+                    .username(review.getUser().getUsername())
+                    .userType(review.getUser().getType())
+                    .mail(review.getUser().getEmail())
+                    .build();
+            reviewDtoRequestList.add(reviewDtoRequest);
+        }
+        return  reviewDtoRequestList;
+    }
+
+    public void saveAdReview(ReviewDtoResponse reviewDtoResponse) {
+        Review review = Review.builder().ad(adRepository.findById(reviewDtoResponse.getAdId()).get())
+                                        .user(userRepository.findByEmail(reviewDtoResponse.getMail()))
+                                        .comment(reviewDtoResponse.getComment())
+                                        .rating(reviewDtoResponse.getRating())
+                                        .like(reviewDtoResponse.getLike())
+                                        .build();
+        reviewRepository.save(review);
     }
 }

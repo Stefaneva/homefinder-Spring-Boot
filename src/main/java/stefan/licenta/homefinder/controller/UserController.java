@@ -1,6 +1,7 @@
 package stefan.licenta.homefinder.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -126,5 +127,15 @@ public class UserController {
     @PostMapping("/deleteAd")
     public void deleteAd(@RequestBody Long adId) {
         userService.deleteAdById(adId);
+    }
+
+    @PostMapping("/getAdReviews")
+    public List<ReviewDtoRequest> getReviews(@RequestBody Long adId) {
+        return userService.getAdReviews(adId);
+    }
+
+    @PostMapping("/saveAdReview")
+    public void saveReview(@RequestBody ReviewDtoResponse reviewDtoResponse) {
+        userService.saveAdReview(reviewDtoResponse);
     }
 }
