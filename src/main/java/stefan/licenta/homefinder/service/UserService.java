@@ -315,4 +315,16 @@ public class UserService {
                                         .build();
         reviewRepository.save(review);
     }
+
+    public void deleteReview(Long reviewId) {
+        reviewRepository.delete(reviewRepository.findById(reviewId).get());
+    }
+
+    public void updateReview(ReviewDtoResponse reviewDtoResponse) {
+        Review review = reviewRepository.findById(reviewDtoResponse.getIdReview()).get();
+        review.setComment(reviewDtoResponse.getComment());
+        review.setRating(reviewDtoResponse.getRating());
+        review.setLike(reviewDtoResponse.getLike());
+        reviewRepository.save(review);
+    }
 }

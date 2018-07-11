@@ -138,4 +138,14 @@ public class UserController {
     public void saveReview(@RequestBody ReviewDtoResponse reviewDtoResponse) {
         userService.saveAdReview(reviewDtoResponse);
     }
+
+    @PostMapping("/updateAdReview")
+    public void updateReview(@RequestBody ReviewDtoResponse reviewDtoResponse) {
+        userService.updateReview(reviewDtoResponse);
+    }
+
+    @PostMapping("/deleteAdReview")
+    public void deleteAdReview(@RequestBody Long reviewId) {
+        userService.deleteReview(reviewId);
+    }
 }
