@@ -11,6 +11,7 @@ import javax.sound.sampled.ReverbType;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -297,6 +298,7 @@ public class UserService {
                     .username(review.getUser().getUsername())
                     .userType(review.getUser().getType())
                     .mail(review.getUser().getEmail())
+                    .date(review.getDate())
                     .build();
             reviewDtoRequestList.add(reviewDtoRequest);
         }
@@ -309,6 +311,7 @@ public class UserService {
                                         .comment(reviewDtoResponse.getComment())
                                         .rating(reviewDtoResponse.getRating())
                                         .like(reviewDtoResponse.getLike())
+                                        .date(this.getCurrentTime())
                                         .build();
         reviewRepository.save(review);
     }

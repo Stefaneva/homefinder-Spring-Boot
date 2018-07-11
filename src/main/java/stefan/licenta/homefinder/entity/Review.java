@@ -3,6 +3,7 @@ package stefan.licenta.homefinder.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -37,4 +38,8 @@ public class Review {
 
     @Column(name = "review_rating")
     private Integer rating;
+
+    @Column(name = "date_added")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
 }
