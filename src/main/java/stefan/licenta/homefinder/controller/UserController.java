@@ -148,4 +148,9 @@ public class UserController {
     public void deleteAdReview(@RequestBody Long reviewId) {
         userService.deleteReview(reviewId);
     }
+
+    @PostMapping("deleteFavorite")
+    public void deleteFavorite(@RequestBody Long favoriteId) {
+        userService.deleteFavorite(favoriteId);
+    }
 }

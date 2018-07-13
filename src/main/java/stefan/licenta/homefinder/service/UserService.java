@@ -287,6 +287,10 @@ public class UserService {
         favoriteRepository.save(favorite);
     }
 
+    public void deleteFavorite(Long favoriteId) {
+        favoriteRepository.deleteById(favoriteId);
+    }
+
     public List<ReviewDtoRequest> getAdReviews(Long adId) {
         List<Review> reviewList = reviewRepository.findAllByAd(adRepository.findById(adId).get());
         List<ReviewDtoRequest> reviewDtoRequestList = new ArrayList<>();
