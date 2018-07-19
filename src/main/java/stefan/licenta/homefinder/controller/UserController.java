@@ -101,7 +101,7 @@ public class UserController {
         userService.saveFavorite(favoriteDto);
     }
 
-    @PostMapping("/adsWithImages")
+    @GetMapping("/adsWithImages")
     public List<AdDto> getAllAdsWithFirstImage() {
         return userService.getAllAdsWithFirstImage();
     }
