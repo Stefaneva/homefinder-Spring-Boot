@@ -40,8 +40,8 @@ public class UserController {
     }
 
     @PostMapping("/updateUserData")
-    public void updateUserData(@RequestBody UserDto userDto) {
-
+    public void updateUserData(@RequestBody UserDtoUpdate userDtoUpdate) {
+        userService.updateUserData(userDtoUpdate);
     }
 
     @PostMapping(value="/newAdImages" , consumes = {"multipart/form-data"})
