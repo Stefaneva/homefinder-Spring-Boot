@@ -31,6 +31,7 @@ public class UserDtoTransformer {
                 .mail(user.getEmail())
                 .name(user.getUsername())
                 .userType(user.getType())
+                .phone(user.getPhone())
                 .lastLoginDate(userLastLoginDate)
                 .build();
     }
