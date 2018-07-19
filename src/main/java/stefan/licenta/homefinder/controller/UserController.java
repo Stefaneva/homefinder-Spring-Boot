@@ -39,6 +39,11 @@ public class UserController {
         return userService.getUserData(emailDto);
     }
 
+    @PostMapping("/updateUserData")
+    public void updateUserData(@RequestBody UserDto userDto) {
+
+    }
+
     @PostMapping(value="/newAdImages" , consumes = {"multipart/form-data"})
     public void saveNewAdImages(@RequestParam("fileUpload") List<MultipartFile> images,
                                 @RequestParam("title") String title,

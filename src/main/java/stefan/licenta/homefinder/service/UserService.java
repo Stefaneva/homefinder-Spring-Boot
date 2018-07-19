@@ -78,6 +78,13 @@ public class UserService {
         return userDtoTransformer.transform(user);
     }
 
+    public void updateUserData(UserDtoUpdate userDtoUpdate) {
+        User user = userRepository.findByEmail(userDtoUpdate.getMail());
+        user.setPassword(passwordEncoder.encode(userDtoUpdate.getPassword()));
+        user.setPhone(userDtoUpdate.getPhone());
+        userRepository.save(user);
+    }
+
     public void saveAdInfo(NewAdDto newAdDto) throws IOException {
         Ad newAd = new Ad();
         newAd.setTitle(newAdDto.getTitle());

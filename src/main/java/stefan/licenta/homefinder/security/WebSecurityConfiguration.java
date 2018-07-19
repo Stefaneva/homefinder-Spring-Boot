@@ -142,6 +142,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/getAdInfo",
                         "/replaceAdImages",
                         "/getAdReviews",
+                        "updateUserData",
                         "/saveAdReview"
                 )
 
