@@ -331,4 +331,9 @@ public class UserService {
         review.setLike(reviewDtoResponse.getLike());
         reviewRepository.save(review);
     }
+
+    public List<String> getUserEmails() {
+        List<String> emails = userRepository.getAllUsersEmail();
+        return emails;
+    }
 }

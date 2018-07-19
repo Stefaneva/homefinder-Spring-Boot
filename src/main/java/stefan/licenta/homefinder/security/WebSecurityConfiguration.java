@@ -151,6 +151,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         HttpMethod.GET,
                         "/",
+                        "/getUserEmails",
                         "/home"
                 );
     }

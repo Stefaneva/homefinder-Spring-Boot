@@ -2,10 +2,7 @@ package stefan.licenta.homefinder.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import stefan.licenta.homefinder.dao.AdImageRepository;
 import stefan.licenta.homefinder.dao.AdRepository;
@@ -149,8 +146,13 @@ public class UserController {
         userService.deleteReview(reviewId);
     }
 
-    @PostMapping("deleteFavorite")
+    @PostMapping("/deleteFavorite")
     public void deleteFavorite(@RequestBody Long favoriteId) {
         userService.deleteFavorite(favoriteId);
+    }
+
+    @GetMapping("/getUserEmails")
+    public List<String> getUserEmails() {
+        return userService.getUserEmails();
     }
 }
