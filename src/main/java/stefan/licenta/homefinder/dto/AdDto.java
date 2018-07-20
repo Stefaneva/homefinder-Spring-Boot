@@ -27,4 +27,5 @@ public class AdDto {
     private String floorLevel;
     private Integer areaSurface;
     private Integer yearBuilt;
+    private String location;
 }

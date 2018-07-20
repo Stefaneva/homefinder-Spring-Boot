@@ -76,6 +76,9 @@ public class Ad {
     @Column(name = "tip_imobil")
     private String furnished;
 
+    @Column(name = "locatie")
+    private String location;
+
     @JsonIgnore
     @OneToMany(mappedBy = "ad",cascade ={CascadeType.ALL}, orphanRemoval = true)
     private Set<Favorite> favorites;

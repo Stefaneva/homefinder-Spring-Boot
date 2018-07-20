@@ -105,15 +105,9 @@ public class UserService {
         newAd.setPartitioning(newAdDto.getPartitioning());
         newAd.setFurnished(newAdDto.getFurnished());
         newAd.setYearBuilt(newAdDto.getYearBuilt());
+        newAd.setLocation(newAdDto.getLocation());
         if(newAdDto.getUploadFiles().size() > 0) {
             this.saveImages(newAdDto.getUploadFiles(), newAd);
-//            for(MultipartFile file : newAdDto.getUploadFiles()) {
-//                AdImage adImage = new AdImage();
-//                byte[] image = file.getBytes();
-//                adImage.setImage(image);
-//                adImage.setAdId(newAd);
-//                adImageRepository.save(adImage);
-//            }
         }
     }
 
@@ -187,6 +181,7 @@ public class UserService {
             adDto.setFloorLevel(i.getFloorLevel());
             adDto.setAreaSurface(i.getAreaSurface());
             adDto.setYearBuilt(i.getYearBuilt());
+            adDto.setLocation(i.getLocation());
             adDtoList.add(adDto);
         }
         return adDtoList;
