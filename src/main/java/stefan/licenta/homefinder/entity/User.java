@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -53,4 +54,8 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user",cascade ={CascadeType.ALL}, orphanRemoval = true)
     private Set<Favorite> favorites;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",cascade ={CascadeType.ALL}, orphanRemoval = true)
+    private List<Event> events;
 }

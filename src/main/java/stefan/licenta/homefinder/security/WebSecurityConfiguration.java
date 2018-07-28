@@ -80,6 +80,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/signup").permitAll()
                 .antMatchers(HttpMethod.POST,"/newAd").authenticated()
                 .antMatchers(HttpMethod.POST, "/getUserAds").authenticated()
+                .antMatchers(HttpMethod.POST, "/saveEvent").authenticated()
                 // TODO: for local testing
 //                    .antMatchers("/crapa").permitAll()
 //                    .antMatchers("/pendingTrainings").permitAll()
@@ -143,7 +144,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/replaceAdImages",
                         "/getAdReviews",
                         "updateUserData",
-                        "/saveAdReview"
+                        "/saveAdReview",
+                        "/getAdEvents"
                 )
 
                 // allow anonymous resource requests

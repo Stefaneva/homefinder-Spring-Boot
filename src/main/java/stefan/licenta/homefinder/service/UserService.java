@@ -7,11 +7,11 @@ import stefan.licenta.homefinder.dao.*;
 import stefan.licenta.homefinder.dto.*;
 import stefan.licenta.homefinder.entity.*;
 
-import javax.sound.sampled.ReverbType;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.time.LocalDate;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -25,16 +25,21 @@ public class UserService {
     private List<MultipartFile> uploadFiles;
     private FavoriteRepository favoriteRepository;
     private ReviewRepository reviewRepository;
+    private EventRepository eventRepository;
+    private EventDtoTransformer eventDtoTransformer;
 
     public UserService(UserRepository userRepository, AdRepository adRepository,
                        PasswordEncoder passwordEncoder, AdImageRepository adImageRepository,
-                       FavoriteRepository favoriteRepository, ReviewRepository reviewRepository) {
+                       FavoriteRepository favoriteRepository, ReviewRepository reviewRepository,
+                       EventRepository eventRepository, EventDtoTransformer eventDtoTransformer) {
         this.userRepository = userRepository;
         this.adRepository = adRepository;
         this.passwordEncoder = passwordEncoder;
         this.adImageRepository = adImageRepository;
         this.favoriteRepository = favoriteRepository;
         this.reviewRepository = reviewRepository;
+        this.eventRepository = eventRepository;
+        this.eventDtoTransformer = eventDtoTransformer;
     }
 
     public void setUploadFiles(List<MultipartFile> files) {
@@ -335,7 +340,39 @@ public class UserService {
     }
 
     public List<String> getUserEmails() {
-        List<String> emails = userRepository.getAllUsersEmail();
-        return emails;
+        return userRepository.getAllUsersEmail();
+    }
+
+    public void saveEvent(EventDtoDate eventDto) throws ParseException {
+        Event event = new Event();
+        event.setAd(adRepository.findById(eventDto.getAdId()).get());
+        event.setUser(userRepository.findByEmail(eventDto.getUserEmail()));
+        event.setStatus(eventDto.getStatus());
+        event.setMessage(eventDto.getMessage());
+        event.setStartDate(eventDto.getStartDate());
+        event.setEndDate(eventDto.getEndDate());
+        eventRepository.save(event);
+    }
+
+    public List<EventDto> getUserEvents(EmailDto emailDto) {
+        return eventDtoTransformer.transformList(userRepository.findByEmail(emailDto.getEmail()).getEvents());
+    }
+
+    public List<EventDto> getAdEvents(Long adId) {
+        return eventDtoTransformer.transformList(adRepository.findById(adId).get().getEvents());
+    }
+
+    public void deleteEvent(EventDtoDate eventDto) {
+        eventRepository.deleteByUserAndAd(
+                userRepository.findByEmail(eventDto.getUserEmail()),adRepository.findById(eventDto.getAdId()).get());
+    }
+
+    public void updateEvent(EventDtoDate eventDto) throws ParseException {
+        Event event = eventRepository.findById(eventDto.getEventId()).get();
+        event.setStatus(eventDto.getStatus());
+        event.setMessage(eventDto.getMessage());
+        event.setStartDate(eventDto.getStartDate());
+        event.setEndDate(eventDto.getEndDate());
+        eventRepository.save(event);
     }
 }

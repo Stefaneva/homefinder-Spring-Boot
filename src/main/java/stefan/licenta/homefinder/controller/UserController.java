@@ -7,9 +7,11 @@ import org.springframework.web.multipart.MultipartFile;
 import stefan.licenta.homefinder.dao.AdImageRepository;
 import stefan.licenta.homefinder.dao.AdRepository;
 import stefan.licenta.homefinder.dto.*;
+import stefan.licenta.homefinder.entity.Event;
 import stefan.licenta.homefinder.service.UserService;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -161,5 +163,30 @@ public class UserController {
     @GetMapping("/getUserEmails")
     public List<String> getUserEmails() {
         return userService.getUserEmails();
+    }
+
+    @PostMapping("/saveEvent")
+    public void saveEvent(@RequestBody EventDtoDate eventDto) throws ParseException {
+        userService.saveEvent(eventDto);
+    }
+
+    @PostMapping("/getUserEvents")
+    public List<EventDto> getUserEvents(@RequestBody EmailDto emailDto) {
+        return userService.getUserEvents(emailDto);
+    }
+
+    @PostMapping("/getAdEvents")
+    public List<EventDto> getAdEvents(@RequestBody Long adId) {
+        return userService.getAdEvents(adId);
+    }
+
+    @PostMapping("/updateEvent")
+    public void updateEvent(@RequestBody EventDtoDate eventDto) throws ParseException {
+        userService.updateEvent(eventDto);
+    }
+
+    @PostMapping("/deleteEvent")
+    public void deleteEvent(@RequestBody EventDtoDate eventDto) {
+        userService.deleteEvent(eventDto);
     }
 }
