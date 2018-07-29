@@ -16,9 +16,9 @@ public class EventDtoDate {
     private String userEmail;
     private Long adId;
     private String message;
-    @JsonFormat(timezone = "GMT+00:00")
+    @JsonFormat(timezone = "Europe/Bucharest")
     private Date startDate;
-    @JsonFormat(timezone = "GMT+00:00")
+    @JsonFormat(timezone = "Europe/Bucharest")
     private Date endDate;
     private String status;
 }

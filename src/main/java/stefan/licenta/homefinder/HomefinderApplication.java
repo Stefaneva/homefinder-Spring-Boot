@@ -16,11 +16,10 @@ import java.util.TimeZone;
 @EntityScan("stefan.licenta.homefinder.entity")
 public class HomefinderApplication {
 
-	@PostConstruct
-	void started() {
-		TimeZone.setDefault(TimeZone.getTimeZone("Europe/Bucharest"));
-	}
-
+//	@PostConstruct
+//	void started() {
+//		TimeZone.setDefault(TimeZone.getTimeZone("Europe/Bucharest"));
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(HomefinderApplication.class, args);
