@@ -344,6 +344,7 @@ public class UserService {
     }
 
     public void saveEvent(EventDtoDate eventDto) throws ParseException {
+        System.out.println(eventDto);
         Event event = new Event();
         event.setAd(adRepository.findById(eventDto.getAdId()).get());
         event.setUser(userRepository.findByEmail(eventDto.getUserEmail()));
@@ -368,7 +369,10 @@ public class UserService {
     }
 
     public void updateEvent(EventDtoDate eventDto) throws ParseException {
-        Event event = eventRepository.findById(eventDto.getEventId()).get();
+        System.out.println(eventDto);
+        Event event = eventRepository.findByUserAndAd(
+                userRepository.findByEmail(eventDto.getUserEmail()),
+                adRepository.findById(eventDto.getAdId()).get());
         event.setStatus(eventDto.getStatus());
         event.setMessage(eventDto.getMessage());
         event.setStartDate(eventDto.getStartDate());

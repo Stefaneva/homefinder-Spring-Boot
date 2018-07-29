@@ -81,6 +81,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/newAd").authenticated()
                 .antMatchers(HttpMethod.POST, "/getUserAds").authenticated()
                 .antMatchers(HttpMethod.POST, "/saveEvent").authenticated()
+                .antMatchers(HttpMethod.POST, "/updateEvent").authenticated()
                 // TODO: for local testing
 //                    .antMatchers("/crapa").permitAll()
 //                    .antMatchers("/pendingTrainings").permitAll()
@@ -143,7 +144,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/getAdInfo",
                         "/replaceAdImages",
                         "/getAdReviews",
-                        "updateUserData",
+                        "/updateUserData",
                         "/saveAdReview",
                         "/getAdEvents"
                 )
