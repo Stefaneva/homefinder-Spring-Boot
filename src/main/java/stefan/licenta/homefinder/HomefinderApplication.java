@@ -15,10 +15,10 @@ import java.util.TimeZone;
 @EnableJpaRepositories("stefan.licenta.homefinder")
 @EntityScan("stefan.licenta.homefinder.entity")
 public class HomefinderApplication {
-	
+
 	@PostConstruct
 	void started() {
-		TimeZone.setDefault(TimeZone.getTimeZone("EETS"));
+		TimeZone.setDefault(TimeZone.getTimeZone("Europe/Bucharest"));
 	}
 
 	public static void main(String[] args) {
