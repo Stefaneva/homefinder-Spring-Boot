@@ -344,7 +344,6 @@ public class UserService {
     }
 
     public void saveEvent(EventDtoDate eventDto) throws ParseException {
-        TimeZone.setDefault(TimeZone.getTimeZone("EEST"));
         System.out.println(eventDto);
         Event event = new Event();
         event.setAd(adRepository.findById(eventDto.getAdId()).get());
@@ -370,7 +369,6 @@ public class UserService {
     }
 
     public void updateEvent(EventDtoDate eventDto) throws ParseException {
-        TimeZone.setDefault(TimeZone.getTimeZone("EEST"));
         System.out.println(eventDto);
         Event event = eventRepository.findByUserAndAd(
                 userRepository.findByEmail(eventDto.getUserEmail()),
