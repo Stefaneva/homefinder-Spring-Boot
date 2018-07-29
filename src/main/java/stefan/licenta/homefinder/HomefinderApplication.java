@@ -15,7 +15,7 @@ import java.util.TimeZone;
 @EnableJpaRepositories("stefan.licenta.homefinder")
 @EntityScan("stefan.licenta.homefinder.entity")
 public class HomefinderApplication {
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(HomefinderApplication.class, args);
 	}
