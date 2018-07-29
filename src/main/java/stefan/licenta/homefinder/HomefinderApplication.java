@@ -20,7 +20,7 @@ public class HomefinderApplication {
 	void started() {
 		TimeZone.setDefault(TimeZone.getTimeZone("Europe/Bucharest"));
 	}
-	
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(HomefinderApplication.class, args);
