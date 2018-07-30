@@ -19,10 +19,10 @@ public class EventDtoDate {
     private Long adId;
     private String message;
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(timezone = "GMT+03:00")
+    @JsonFormat(timezone = "Europe/Bucharest")
     private Date startDate;
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(timezone = "GMT+03:00")
+    @JsonFormat(timezone = "Europe/Bucharest")
     private Date endDate;
     private String status;
 }
