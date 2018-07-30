@@ -18,11 +18,11 @@ public class EventDtoDate {
     private String userEmail;
     private Long adId;
     private String message;
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(timezone = "Europe/Bucharest")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @JsonFormat(timezone = "Europe/Bucharest")
     private Date startDate;
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(timezone = "Europe/Bucharest")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @JsonFormat(timezone = "Europe/Bucharest")
     private Date endDate;
     private String status;
 }
