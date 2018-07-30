@@ -345,13 +345,14 @@ public class UserService {
 
     public void saveEvent(EventDtoDate eventDto) throws ParseException {
         System.out.println(eventDto);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy, HH:mm:ss");
         Event event = new Event();
         event.setAd(adRepository.findById(eventDto.getAdId()).get());
         event.setUser(userRepository.findByEmail(eventDto.getUserEmail()));
         event.setStatus(eventDto.getStatus());
         event.setMessage(eventDto.getMessage());
-        event.setStartDate(SimpleDateFormat.getInstance().parse(eventDto.getStartDate()));
-        event.setEndDate(SimpleDateFormat.getInstance().parse(eventDto.getEndDate()));
+        event.setStartDate(simpleDateFormat.parse(eventDto.getStartDate()));
+        event.setEndDate(simpleDateFormat.parse(eventDto.getEndDate()));
         eventRepository.save(event);
     }
 
