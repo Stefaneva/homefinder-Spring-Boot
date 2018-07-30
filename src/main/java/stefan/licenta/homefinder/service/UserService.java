@@ -350,8 +350,8 @@ public class UserService {
         event.setUser(userRepository.findByEmail(eventDto.getUserEmail()));
         event.setStatus(eventDto.getStatus());
         event.setMessage(eventDto.getMessage());
-        event.setStartDate(eventDto.getStartDate());
-        event.setEndDate(eventDto.getEndDate());
+        event.setStartDate(SimpleDateFormat.getInstance().parse(eventDto.getStartDate()));
+        event.setEndDate(SimpleDateFormat.getInstance().parse(eventDto.getEndDate()));
         eventRepository.save(event);
     }
 
@@ -375,8 +375,8 @@ public class UserService {
                 adRepository.findById(eventDto.getAdId()).get());
         event.setStatus(eventDto.getStatus());
         event.setMessage(eventDto.getMessage());
-        event.setStartDate(eventDto.getStartDate());
-        event.setEndDate(eventDto.getEndDate());
+//        event.setStartDate(eventDto.getStartDate());
+//        event.setEndDate(eventDto.getEndDate());
         eventRepository.save(event);
     }
 }
