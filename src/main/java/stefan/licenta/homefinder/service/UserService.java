@@ -344,7 +344,6 @@ public class UserService {
     }
 
     public void saveEvent(EventDtoDate eventDto) throws ParseException {
-        System.out.println(eventDto);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy, HH:mm:ss");
         Event event = new Event();
         event.setAd(adRepository.findById(eventDto.getAdId()).get());
@@ -370,14 +369,14 @@ public class UserService {
     }
 
     public void updateEvent(EventDtoDate eventDto) throws ParseException {
-        System.out.println(eventDto);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy, HH:mm:ss");
         Event event = eventRepository.findByUserAndAd(
                 userRepository.findByEmail(eventDto.getUserEmail()),
                 adRepository.findById(eventDto.getAdId()).get());
         event.setStatus(eventDto.getStatus());
         event.setMessage(eventDto.getMessage());
-//        event.setStartDate(eventDto.getStartDate());
-//        event.setEndDate(eventDto.getEndDate());
+        event.setStartDate(simpleDateFormat.parse(eventDto.getStartDate()));
+        event.setEndDate(simpleDateFormat.parse(eventDto.getEndDate()));
         eventRepository.save(event);
     }
 }
