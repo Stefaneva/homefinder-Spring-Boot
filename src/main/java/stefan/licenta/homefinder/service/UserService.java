@@ -358,7 +358,12 @@ public class UserService {
     }
 
     public List<EventDto> getUserEvents(EmailDto emailDto) {
-        return eventDtoTransformer.transformList(userRepository.findByEmail(emailDto.getEmail()).getEvents());
+        User user = userRepository.findByEmail(emailDto.getEmail());
+        List<EventDto> eventDtos = eventDtoTransformer.transformList(user.getEvents());
+        if (eventDtos.size() == 0) {
+            eventDtos = eventDtoTransformer.transformList(eventRepository.findAllByAdUserId(user));
+        }
+        return eventDtos;
     }
 
     public List<EventDto> getAdEvents(Long adId) {

@@ -12,4 +12,6 @@ import java.util.List;
 public interface EventRepository extends JpaRepository<Event, Long> {
     void deleteByUserAndAd(User user, Ad ad);
     Event findByUserAndAd(User user, Ad ad);
+
+    List<Event> findAllByAdUserId(User ad_userId);
 }
