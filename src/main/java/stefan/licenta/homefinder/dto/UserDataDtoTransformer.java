@@ -18,6 +18,7 @@ public class UserDataDtoTransformer {
                 .type(user.getType())
                 .lastLoginDate(user.getLastLoginDate().toString())
                 .lastPasswordResetDate(user.getLastPasswordResetDate().toString())
+                .blocked(user.isEnabled())
                 .build();
     }
 

@@ -15,4 +15,5 @@ public class UserDataDto {
     private Long phone;
     private String lastPasswordResetDate;
     private String lastLoginDate;
+    private Boolean blocked;
 }
