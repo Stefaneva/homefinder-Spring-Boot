@@ -27,11 +27,13 @@ public class UserService {
     private ReviewRepository reviewRepository;
     private EventRepository eventRepository;
     private EventDtoTransformer eventDtoTransformer;
+    private UserDataDtoTransformer userDataDtoTransformer;
 
     public UserService(UserRepository userRepository, AdRepository adRepository,
                        PasswordEncoder passwordEncoder, AdImageRepository adImageRepository,
                        FavoriteRepository favoriteRepository, ReviewRepository reviewRepository,
-                       EventRepository eventRepository, EventDtoTransformer eventDtoTransformer) {
+                       EventRepository eventRepository, EventDtoTransformer eventDtoTransformer,
+                       UserDataDtoTransformer userDataDtoTransformer) {
         this.userRepository = userRepository;
         this.adRepository = adRepository;
         this.passwordEncoder = passwordEncoder;
@@ -40,6 +42,7 @@ public class UserService {
         this.reviewRepository = reviewRepository;
         this.eventRepository = eventRepository;
         this.eventDtoTransformer = eventDtoTransformer;
+        this.userDataDtoTransformer = userDataDtoTransformer;
     }
 
     public void setUploadFiles(List<MultipartFile> files) {
@@ -385,5 +388,9 @@ public class UserService {
         event.setStartDate(simpleDateFormat.parse(eventDto.getStartDate()));
         event.setEndDate(simpleDateFormat.parse(eventDto.getEndDate()));
         eventRepository.save(event);
+    }
+
+    public List<UserDataDto> getUsersData() {
+        return userDataDtoTransformer.transformList(userRepository.getAllUsers());
     }
 }

@@ -8,8 +8,10 @@ import stefan.licenta.homefinder.dao.AdImageRepository;
 import stefan.licenta.homefinder.dao.AdRepository;
 import stefan.licenta.homefinder.dto.*;
 import stefan.licenta.homefinder.entity.Event;
+import stefan.licenta.homefinder.entity.User;
 import stefan.licenta.homefinder.service.UserService;
 
+import javax.ws.rs.GET;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -29,11 +31,15 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @PostMapping("/signup")
     public void userRegistration(@RequestBody UserRegistrationDto userRegistrationDto){
         System.out.println(userRegistrationDto);
         userService.registerNewUser(userRegistrationDto);
+    }
+
+    @GetMapping("/userList")
+    public List<UserDataDto> getUsersData() {
+        return userService.getUsersData();
     }
 
     @PostMapping("/getUserData")

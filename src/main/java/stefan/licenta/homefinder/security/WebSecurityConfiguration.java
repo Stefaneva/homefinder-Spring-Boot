@@ -157,6 +157,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/",
                         "/adsWithImages",
                         "/getUserEmails",
+                        "/userList",
                         "/home"
                 );
     }

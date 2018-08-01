@@ -15,4 +15,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("select u.email from User u")
     List<String> getAllUsersEmail();
+
+    @Query("select u from User u where u.type not like 'ADMIN'")
+    List<User> getAllUsers();
 }
