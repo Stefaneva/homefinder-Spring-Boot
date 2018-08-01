@@ -42,7 +42,7 @@ public class EventDtoTransformer {
     }
 
     public List<EventDto> transformList(List<Event> events, Boolean owner) {
-        if(owner)
+        if(!owner)
             return events.stream().map(this::transform).collect(Collectors.toList());
         else
             return events.stream().map(this::transformOwner).collect(Collectors.toList());
