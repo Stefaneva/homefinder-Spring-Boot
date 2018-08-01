@@ -26,6 +26,7 @@ public class UserDtoTransformer {
             cal.add(Calendar.HOUR_OF_DAY, 3);
             userLastLoginDate = dateFormat.format(cal.getTime());
         }
+        System.out.println(user.isEnabled());
 
         return UserDto.builder()
                 .mail(user.getEmail())
@@ -33,6 +34,7 @@ public class UserDtoTransformer {
                 .userType(user.getType())
                 .phone(user.getPhone())
                 .lastLoginDate(userLastLoginDate)
+                .blocked(user.isEnabled())
                 .build();
     }
 

@@ -14,4 +14,5 @@ public class UserDto {
     private UserType userType;
     private String lastLoginDate;
     private Long phone;
+    private boolean blocked;
 }
