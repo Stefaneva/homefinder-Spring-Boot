@@ -58,6 +58,8 @@ public class UserService {
             String s = userRegistrationDto.getUserType();
             if(s.equals("Cumparator/Chirias"))
                 user.setType(UserType.USER);
+            else if(s.equals("Admin"))
+                user.setType(UserType.ADMIN);
             else
                 user.setType(UserType.AGENT_IMOBILIAR);
             user.setLastPasswordResetDate(this.getCurrentTime());

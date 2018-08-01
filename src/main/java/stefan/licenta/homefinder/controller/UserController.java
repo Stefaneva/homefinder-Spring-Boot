@@ -100,12 +100,12 @@ public class UserController {
         userService.updateAdInfo(adDto);
     }
 
-    @PostMapping("getFavoriteAds")
+    @PostMapping("/getFavoriteAds")
     public List<AdDto> getFavouriteAds(@RequestBody EmailDto userEmail) {
         return userService.getAllFavorites(userEmail.getEmail());
     }
 
-    @PostMapping("saveFavorite")
+    @PostMapping("/saveFavorite")
     public void saveFavorite(@RequestBody FavoriteDto favoriteDto) {
         userService.saveFavorite(favoriteDto);
     }
