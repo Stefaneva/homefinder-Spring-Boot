@@ -359,15 +359,15 @@ public class UserService {
 
     public List<EventDto> getUserEvents(EmailDto emailDto) {
         User user = userRepository.findByEmail(emailDto.getEmail());
-        List<EventDto> eventDtos = eventDtoTransformer.transformList(user.getEvents());
+        List<EventDto> eventDtos = eventDtoTransformer.transformList(user.getEvents(), false);
         if (eventDtos.size() == 0) {
-            eventDtos = eventDtoTransformer.transformList(eventRepository.findAllByAdUserId(user));
+            eventDtos = eventDtoTransformer.transformList(eventRepository.findAllByAdUserId(user), true);
         }
         return eventDtos;
     }
 
     public List<EventDto> getAdEvents(Long adId) {
-        return eventDtoTransformer.transformList(adRepository.findById(adId).get().getEvents());
+        return eventDtoTransformer.transformList(adRepository.findById(adId).get().getEvents(), false);
     }
 
     public void deleteEvent(EventDtoDate eventDto) {

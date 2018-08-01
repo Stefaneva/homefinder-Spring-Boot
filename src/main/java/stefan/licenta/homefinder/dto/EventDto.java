@@ -19,4 +19,5 @@ public class EventDto {
     private String startDate;
     private String endDate;
     private String status;
+    private Boolean owner;
 }

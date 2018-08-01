@@ -26,7 +26,25 @@ public class EventDtoTransformer {
         return eventDto;
     }
 
-    public List<EventDto> transformList(List<Event> events) {
-        return events.stream().map(this::transform).collect(Collectors.toList());
+    public EventDto transformOwner(Event event){
+        EventDto eventDto = EventDto.builder()
+                .adId(event.getAd().getAdId())
+                .userEmail(event.getUser().getEmail())
+                .eventId(event.getEventId())
+                .status(event.getStatus())
+                .startDate(event.getStartDate().toString())
+                .endDate(event.getEndDate().toString())
+                .message(event.getMessage())
+                .owner(true)
+                .build();
+        System.out.println(eventDto);
+        return eventDto;
+    }
+
+    public List<EventDto> transformList(List<Event> events, Boolean owner) {
+        if(owner)
+            return events.stream().map(this::transform).collect(Collectors.toList());
+        else
+            return events.stream().map(this::transformOwner).collect(Collectors.toList());
     }
 }
