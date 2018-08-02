@@ -85,7 +85,10 @@ public class UserService {
         user.setLastLoginDate(user.getCurrentLoginDate());
         user.setCurrentLoginDate(new Date());
         userRepository.save(user);
-        return userDtoTransformer.transform(user);
+        UserDto userDto = userDtoTransformer.transform(user);
+        user.setNotification(null);
+        userRepository.save(user);
+        return userDto;
     }
 
     public void updateUserData(UserDtoUpdate userDtoUpdate) {
