@@ -34,7 +34,7 @@ public class UserDtoTransformer {
                 .userType(user.getType())
                 .phone(user.getPhone())
                 .lastLoginDate(userLastLoginDate)
-                .blocked(user.isEnabled())
+                .enabled(user.isEnabled())
                 .build();
     }
 
