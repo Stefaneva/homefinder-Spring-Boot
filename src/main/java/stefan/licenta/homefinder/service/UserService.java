@@ -376,6 +376,9 @@ public class UserService {
     public void deleteEvent(EventDtoDate eventDto) {
         eventRepository.deleteByUserAndAd(
                 userRepository.findByEmail(eventDto.getUserEmail()),adRepository.findById(eventDto.getAdId()).get());
+        User user = userRepository.findUserByEmail(eventDto.getUserEmail());
+        user.setNotification(2L);
+        userRepository.save(user);
     }
 
     public void updateEvent(EventDtoDate eventDto) throws ParseException {
@@ -387,6 +390,9 @@ public class UserService {
         event.setMessage(eventDto.getMessage());
         event.setStartDate(simpleDateFormat.parse(eventDto.getStartDate()));
         event.setEndDate(simpleDateFormat.parse(eventDto.getEndDate()));
+        User user = userRepository.findUserByEmail(eventDto.getUserEmail());
+        user.setNotification(1L);
+        userRepository.save(user);
         eventRepository.save(event);
     }
 
