@@ -35,6 +35,7 @@ public class UserDtoTransformer {
                 .phone(user.getPhone())
                 .lastLoginDate(userLastLoginDate)
                 .enabled(user.isEnabled())
+                .notification(user.getNotification())
                 .build();
     }
 
