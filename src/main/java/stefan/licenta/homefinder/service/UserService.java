@@ -275,6 +275,11 @@ public class UserService {
     }
 
     public void deleteAdById(Long adId) {
+        List<User> userList = eventRepository.findAllUsersAtAd(adRepository.findById(adId).get());
+        for(User i : userList) {
+            i.setNotification(2L);
+            userRepository.save(i);
+        }
         adRepository.deleteById(adId);
     }
 
@@ -358,6 +363,9 @@ public class UserService {
         event.setStartDate(simpleDateFormat.parse(eventDto.getStartDate()));
         event.setEndDate(simpleDateFormat.parse(eventDto.getEndDate()));
         eventRepository.save(event);
+        User user = userRepository.findUserByEmail(eventDto.getUserEmail());
+        user.setNotification(3L);
+        userRepository.save(user);
     }
 
     public List<EventDto> getUserEvents(EmailDto emailDto) {
