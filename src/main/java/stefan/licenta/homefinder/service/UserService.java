@@ -393,4 +393,10 @@ public class UserService {
     public List<UserDataDto> getUsersData() {
         return userDataDtoTransformer.transformList(userRepository.getAllUsers());
     }
+
+    public void updateUser(UserDataDto userDataDto) {
+        User user = userRepository.findUserByEmail(userDataDto.getEmail());
+        user.setEnabled(userDataDto.getEnabled());
+        userRepository.save(user);
+    }
 }

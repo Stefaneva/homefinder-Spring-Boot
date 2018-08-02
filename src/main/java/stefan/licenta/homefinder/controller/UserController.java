@@ -42,6 +42,11 @@ public class UserController {
         return userService.getUsersData();
     }
 
+    @PostMapping("/updateUser")
+    public void  updateUser(@RequestBody UserDataDto userDataDto) {
+        userService.updateUser(userDataDto);
+    }
+
     @PostMapping("/getUserData")
     public UserDto getUserData(@RequestBody EmailDto emailDto) {
         return userService.getUserData(emailDto);
