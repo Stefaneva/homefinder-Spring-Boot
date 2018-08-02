@@ -15,5 +15,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     Event findByUserAndAd(User user, Ad ad);
     @Query("select e.user from Event e where e.ad = ?1")
     List<User> findAllUsersAtAd(Ad ad);
+    @Query("select e.ad.userId from Event e where e.ad = ?1")
+    User findOwner(Ad ad);
     List<Event> findAllByAdUserId(User ad_userId);
 }

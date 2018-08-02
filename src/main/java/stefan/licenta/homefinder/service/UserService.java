@@ -366,7 +366,7 @@ public class UserService {
         event.setStartDate(simpleDateFormat.parse(eventDto.getStartDate()));
         event.setEndDate(simpleDateFormat.parse(eventDto.getEndDate()));
         eventRepository.save(event);
-        User user = userRepository.findUserByEmail(eventDto.getUserEmail());
+        User user = eventRepository.findOwner(adRepository.findById(eventDto.getAdId()).get());
         user.setNotification(3L);
         userRepository.save(user);
     }
