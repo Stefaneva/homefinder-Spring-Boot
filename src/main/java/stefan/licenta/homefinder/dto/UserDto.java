@@ -15,4 +15,5 @@ public class UserDto {
     private String lastLoginDate;
     private Long phone;
     private Boolean enabled;
+    private Long notification;
 }

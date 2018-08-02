@@ -45,11 +45,16 @@ public class User {
 
     @JsonIgnore
     @Column(name="last_login_date")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastLoginDate;
 
     @JsonIgnore
     @Column(name="current_login_date")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date currentLoginDate;
+
+    @Column(name = "notification")
+    private Long notification;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user",cascade ={CascadeType.ALL}, orphanRemoval = true)
