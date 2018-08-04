@@ -200,4 +200,9 @@ public class UserController {
     public void deleteEvent(@RequestBody EventDtoDate eventDto) {
         userService.deleteEvent(eventDto);
     }
+
+    @GetMapping("/eventsReport")
+    public EventReportDto getEventsReport() {
+        return userService.getEventsReport();
+    }
 }

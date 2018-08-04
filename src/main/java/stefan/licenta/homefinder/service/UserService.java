@@ -416,4 +416,12 @@ public class UserService {
         user.setEnabled(userDataDto.getEnabled());
         userRepository.save(user);
     }
+
+    public EventReportDto getEventsReport() {
+        return EventReportDto.builder()
+                .acceptedEvents(eventRepository.getAcceptedEventsNumber())
+                .pendingEvents(eventRepository.getPendingEventsNumber())
+                .allEvents(eventRepository.getEventsTotal())
+                .build();
+    }
 }

@@ -18,4 +18,10 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("select e.ad.userId from Event e where e.ad = ?1")
     User findOwner(Ad ad);
     List<Event> findAllByAdUserId(User ad_userId);
+    @Query("select count(e) from Event e where e.status like 'PENDING'")
+    Integer getPendingEventsNumber();
+    @Query("select count(e) from Event e where e.status like 'ACCEPTED'")
+    Integer getAcceptedEventsNumber();
+    @Query("select count(e) from Event e")
+    Integer getEventsTotal();
 }
