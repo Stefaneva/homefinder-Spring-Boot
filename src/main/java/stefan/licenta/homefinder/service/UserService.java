@@ -427,7 +427,7 @@ public class UserService {
                 .apartmentAds(adRepository.getApartmentAdsNumber())
                 .homeAds(adRepository.getHomeAdsNumber())
                 .rentAds(adRepository.getRentAdsNumber())
-                .salesAds(adRepository.getRentAdsNumber())
+                .salesAds(adRepository.getSalesAdsNumber())
                 .build();
     }
 }
