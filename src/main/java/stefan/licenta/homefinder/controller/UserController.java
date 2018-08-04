@@ -1,17 +1,13 @@
 package stefan.licenta.homefinder.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import stefan.licenta.homefinder.dao.AdImageRepository;
 import stefan.licenta.homefinder.dao.AdRepository;
 import stefan.licenta.homefinder.dto.*;
-import stefan.licenta.homefinder.entity.Event;
-import stefan.licenta.homefinder.entity.User;
 import stefan.licenta.homefinder.service.UserService;
 
-import javax.ws.rs.GET;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -202,7 +198,7 @@ public class UserController {
     }
 
     @GetMapping("/eventsReport")
-    public EventReportDto getEventsReport() {
+    public ReportsDto getEventsReport() {
         return userService.getEventsReport();
     }
 }

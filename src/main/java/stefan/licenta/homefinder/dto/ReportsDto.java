@@ -8,8 +8,13 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @ToString
-public class EventReportDto {
+public class ReportsDto {
     private Integer pendingEvents;
     private Integer acceptedEvents;
     private Integer allEvents;
+    private Integer homeAds;
+    private Integer apartmentAds;
+    private Integer salesAds;
+    private Integer rentAds;
+    private Integer allAds;
 }

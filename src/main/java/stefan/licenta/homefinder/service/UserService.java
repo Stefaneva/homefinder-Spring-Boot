@@ -417,11 +417,17 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public EventReportDto getEventsReport() {
-        return EventReportDto.builder()
+    public ReportsDto getEventsReport() {
+        Long adsValue = adRepository.count();
+        return ReportsDto.builder()
                 .acceptedEvents(eventRepository.getAcceptedEventsNumber())
                 .pendingEvents(eventRepository.getPendingEventsNumber())
                 .allEvents(eventRepository.getEventsTotal())
+                .allAds(adsValue.intValue())
+                .apartmentAds(adRepository.getApartmentAdsNumber())
+                .homeAds(adRepository.getHomeAdsNumber())
+                .rentAds(adRepository.getRentAdsNumber())
+                .salesAds(adRepository.getRentAdsNumber())
                 .build();
     }
 }
