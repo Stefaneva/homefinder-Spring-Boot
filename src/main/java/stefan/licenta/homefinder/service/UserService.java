@@ -76,6 +76,13 @@ public class UserService {
 
     public void registerNewUser(UserRegistrationDto userRegistrationDto){
         userRepository.save(this.transformUserDto(userRegistrationDto));
+        List<String> user = new ArrayList<>();
+        user.add(userRegistrationDto.getEmail());
+        try {
+            emailService.sendEmail(user, "Bun venit pe HomeFinder", "Bun venit!");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
     public Timestamp getCurrentTime(){
