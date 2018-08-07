@@ -1,5 +1,6 @@
 package stefan.licenta.homefinder.service;
 
+import org.hibernate.validator.constraints.Email;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -7,6 +8,7 @@ import stefan.licenta.homefinder.dao.*;
 import stefan.licenta.homefinder.dto.*;
 import stefan.licenta.homefinder.entity.*;
 
+import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -28,12 +30,13 @@ public class UserService {
     private EventRepository eventRepository;
     private EventDtoTransformer eventDtoTransformer;
     private UserDataDtoTransformer userDataDtoTransformer;
+    private EmailService emailService;
 
     public UserService(UserRepository userRepository, AdRepository adRepository,
                        PasswordEncoder passwordEncoder, AdImageRepository adImageRepository,
                        FavoriteRepository favoriteRepository, ReviewRepository reviewRepository,
                        EventRepository eventRepository, EventDtoTransformer eventDtoTransformer,
-                       UserDataDtoTransformer userDataDtoTransformer) {
+                       UserDataDtoTransformer userDataDtoTransformer, EmailService emailService) {
         this.userRepository = userRepository;
         this.adRepository = adRepository;
         this.passwordEncoder = passwordEncoder;
@@ -43,6 +46,7 @@ public class UserService {
         this.eventRepository = eventRepository;
         this.eventDtoTransformer = eventDtoTransformer;
         this.userDataDtoTransformer = userDataDtoTransformer;
+        this.emailService = emailService;
     }
 
     public void setUploadFiles(List<MultipartFile> files) {
@@ -369,6 +373,13 @@ public class UserService {
         User user = eventRepository.findOwner(adRepository.findById(eventDto.getAdId()).get());
         user.setNotification(3L);
         userRepository.save(user);
+        List<String> receivers = new ArrayList<>();
+        receivers.add(eventDto.getUserEmail());
+        try {
+            emailService.sendEmail(receivers, "Programarea a fost inregistrata!", "Programare");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<EventDto> getUserEvents(EmailDto emailDto) {
