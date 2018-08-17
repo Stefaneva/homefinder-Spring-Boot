@@ -87,4 +87,8 @@ public class Ad {
     @JsonIgnore
     @OneToMany(mappedBy = "ad",cascade ={CascadeType.ALL}, orphanRemoval = true)
     private List<Event> events;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "adId", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    private List<AdImage> adImageList;
 }
