@@ -184,7 +184,6 @@ public class UserService {
             System.out.println(i.getAdId());
             AdDto adDto = new AdDto();
             AdImage adImage = adImageRepository.findFirstByAdId(i);
-//            AdImage adImage = i.getAdImageList().get(0);
             if(adImage != null) {
                 String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
                 adDto.setImage(encodeImage);
