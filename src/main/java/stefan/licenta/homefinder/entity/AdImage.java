@@ -20,7 +20,7 @@ public class AdImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idImg;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "idfanunt", nullable = false,
             foreignKey = @ForeignKey(name = "fk_poze_anunturi" ))
     private Ad adId;
