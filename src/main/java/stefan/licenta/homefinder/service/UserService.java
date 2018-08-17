@@ -188,7 +188,6 @@ public class UserService {
                 String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(adImage.getImage());
                 adDto.setImage(encodeImage);
             }
-            System.out.println(adImage.getAdId());
             adDto.setId(i.getAdId());
             adDto.setTitle(i.getTitle());
             adDto.setAdType(i.getAdTranzactionType());
