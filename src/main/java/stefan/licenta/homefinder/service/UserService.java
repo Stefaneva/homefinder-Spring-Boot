@@ -12,6 +12,7 @@ import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -249,8 +250,10 @@ public class UserService {
     }
 
     public AdDetailsDto getAdInfo(Long adId) {
+        DecimalFormat decimalFormat = new DecimalFormat(".##");
         AdDetailsDto adDetailsDto = new AdDetailsDto();
         Ad ad = adRepository.findById(adId).get();
+        String avgAdReview = decimalFormat.format(reviewRepository.selectAvgReview(ad));
         adDetailsDto.setId(ad.getAdId());
         adDetailsDto.setTitle(ad.getTitle());
         adDetailsDto.setDescription(ad.getDescription());
@@ -274,6 +277,7 @@ public class UserService {
         newUserDto.setUserType(ad.getUserId().getType());
         newUserDto.setLastLoginDate(ad.getUserId().getLastLoginDate().toString());
         adDetailsDto.setUserDetails(newUserDto);
+        adDetailsDto.setAvgAdReview(Double.parseDouble(avgAdReview));
         return adDetailsDto;
     }
 

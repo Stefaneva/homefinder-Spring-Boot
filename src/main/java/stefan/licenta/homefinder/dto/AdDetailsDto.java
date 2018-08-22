@@ -30,4 +30,5 @@ public class AdDetailsDto {
     private String floorLevel;
     private Integer areaSurface;
     private Integer yearBuilt;
+    private Double avgAdReview;
 }
