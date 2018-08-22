@@ -253,7 +253,8 @@ public class UserService {
         DecimalFormat decimalFormat = new DecimalFormat(".##");
         AdDetailsDto adDetailsDto = new AdDetailsDto();
         Ad ad = adRepository.findById(adId).get();
-        String avgAdReview = decimalFormat.format(reviewRepository.selectAvgReview(ad));
+        Double avgRating = reviewRepository.selectAvgReview(ad);
+        System.out.println(avgRating);
         adDetailsDto.setId(ad.getAdId());
         adDetailsDto.setTitle(ad.getTitle());
         adDetailsDto.setDescription(ad.getDescription());
@@ -277,7 +278,10 @@ public class UserService {
         newUserDto.setUserType(ad.getUserId().getType());
         newUserDto.setLastLoginDate(ad.getUserId().getLastLoginDate().toString());
         adDetailsDto.setUserDetails(newUserDto);
-        adDetailsDto.setAvgAdReview(Double.parseDouble(avgAdReview));
+        if (avgRating != null) {
+            String avgAdReview = decimalFormat.format(avgRating);
+            adDetailsDto.setAvgAdReview(Double.parseDouble(avgAdReview));
+        }
         return adDetailsDto;
     }
 
