@@ -15,6 +15,7 @@ public class EventDtoTransformer {
     public EventDto transform(Event event){
         EventDto eventDto = EventDto.builder()
                 .adId(event.getAd().getAdId())
+                .adTitle(event.getAd().getTitle())
                 .userEmail(event.getUser().getEmail())
                 .eventId(event.getEventId())
                 .status(event.getStatus())
@@ -29,6 +30,7 @@ public class EventDtoTransformer {
     public EventDto transformOwner(Event event){
         EventDto eventDto = EventDto.builder()
                 .adId(event.getAd().getAdId())
+                .adTitle(event.getAd().getTitle())
                 .userEmail(event.getUser().getEmail())
                 .eventId(event.getEventId())
                 .status(event.getStatus())

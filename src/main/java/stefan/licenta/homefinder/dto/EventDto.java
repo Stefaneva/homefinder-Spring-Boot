@@ -15,6 +15,7 @@ public class EventDto {
     private Long eventId;
     private String userEmail;
     private Long adId;
+    private String adTitle;
     private String message;
     private String startDate;
     private String endDate;
