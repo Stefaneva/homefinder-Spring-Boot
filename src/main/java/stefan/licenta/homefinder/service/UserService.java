@@ -71,6 +71,8 @@ public class UserService {
             else
                 user.setType(UserType.AGENT_IMOBILIAR);
             user.setLastPasswordResetDate(this.getCurrentTime());
+            user.setLastLoginDate(this.getCurrentTime());
+            user.setCurrentLoginDate(this.getCurrentTime());
         }
         return user;
     }
@@ -80,7 +82,8 @@ public class UserService {
         List<String> user = new ArrayList<>();
         user.add(userRegistrationDto.getEmail());
         try {
-            emailService.sendEmail(user, "Bun venit pe HomeFinder", "Bun venit!");
+            emailService.sendEmail(user, "Bun venit pe HomeFinder!", "Bine ai venit pe HomeFinder, "
+                                                                            + userRegistrationDto.getUsername() +"!");
         } catch (MessagingException e) {
             e.printStackTrace();
         }
