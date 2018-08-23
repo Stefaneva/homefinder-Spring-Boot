@@ -348,7 +348,7 @@ public class UserService {
         return  reviewDtoRequestList;
     }
 
-    public void saveAdReview(ReviewDtoResponse reviewDtoResponse) {
+    public Long saveAdReview(ReviewDtoResponse reviewDtoResponse) {
         Review review = Review.builder().ad(adRepository.findById(reviewDtoResponse.getAdId()).get())
                                         .user(userRepository.findByEmail(reviewDtoResponse.getMail()))
                                         .comment(reviewDtoResponse.getComment())
@@ -356,7 +356,8 @@ public class UserService {
                                         .like(reviewDtoResponse.getLike())
                                         .date(this.getCurrentTime())
                                         .build();
-        reviewRepository.save(review);
+        Review review1 = reviewRepository.save(review);
+        return review1.getId();
     }
 
     public void deleteReview(Long reviewId) {

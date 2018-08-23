@@ -148,8 +148,8 @@ public class UserController {
     }
 
     @PostMapping("/saveAdReview")
-    public void saveReview(@RequestBody ReviewDtoResponse reviewDtoResponse) {
-        userService.saveAdReview(reviewDtoResponse);
+    public Long saveReview(@RequestBody ReviewDtoResponse reviewDtoResponse) {
+        return userService.saveAdReview(reviewDtoResponse);
     }
 
     @PostMapping("/updateAdReview")
