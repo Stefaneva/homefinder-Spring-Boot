@@ -2,7 +2,7 @@ package stefan.licenta.homefinder.entity;
 
 public enum UserType {
     ADMIN ("ADMIN"),
-    USER("CUMPARATOR/CHIRIAS"),
+    USER("USER"),
     AGENT_IMOBILIAR("AGENT IMOBILIAR");
 
     private final String name;
