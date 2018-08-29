@@ -395,7 +395,11 @@ public class UserService {
         List<String> receivers = new ArrayList<>();
         receivers.add(eventDto.getUserEmail());
         try {
-            emailService.sendEmail(receivers, "Programarea a fost inregistrata!", "Programare");
+            emailService.sendEmail(receivers,"Programare vizita" , "Programarea vizitei a fost inregistrata cu succes!");
+            receivers.remove(0);
+            receivers.add(user.getEmail());
+            emailService.sendEmail(receivers, "Programare noua", "Buna " + user.getEmail() + "!"
+                    + "\n" + "O noua programare asteapta confirmarea ta!");
         } catch (MessagingException e) {
             e.printStackTrace();
         }
@@ -415,18 +419,29 @@ public class UserService {
     }
 
     public void deleteEvent(EventDtoDate eventDto) {
+        Ad ad = adRepository.findById(eventDto.getAdId()).get();
+        Event event = eventRepository.findByUserAndAd(
+                userRepository.findByEmail(eventDto.getUserEmail()),ad);
         eventRepository.deleteByUserAndAd(
-                userRepository.findByEmail(eventDto.getUserEmail()),adRepository.findById(eventDto.getAdId()).get());
+                userRepository.findByEmail(eventDto.getUserEmail()),ad);
         User user = userRepository.findUserByEmail(eventDto.getUserEmail());
         user.setNotification(2L);
         userRepository.save(user);
+        List<String> users = new ArrayList<>();
+        users.add(user.getEmail());
+        try {
+            emailService.sendEmail(users, "Update programare " + ad.getTitle(),
+                    "Buna " + event.getUser().getUsername() + "!" + "\n" + "Programarea ta a fost refuzata");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateEvent(EventDtoDate eventDto) throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy, HH:mm:ss");
+        Ad ad = adRepository.findById(eventDto.getAdId()).get();
         Event event = eventRepository.findByUserAndAd(
-                userRepository.findByEmail(eventDto.getUserEmail()),
-                adRepository.findById(eventDto.getAdId()).get());
+                userRepository.findByEmail(eventDto.getUserEmail()),ad);
         event.setStatus(eventDto.getStatus());
         event.setMessage(eventDto.getMessage());
         event.setStartDate(simpleDateFormat.parse(eventDto.getStartDate()));
@@ -435,6 +450,14 @@ public class UserService {
         user.setNotification(1L);
         userRepository.save(user);
         eventRepository.save(event);
+        List<String> users = new ArrayList<>();
+        users.add(user.getEmail());
+        try {
+            emailService.sendEmail(users, "Update programare " + ad.getTitle(),
+                    "Buna " + event.getUser().getUsername() + "!" + "\n" + "Programarea ta a fost acceptata");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<UserDataDto> getUsersData() {

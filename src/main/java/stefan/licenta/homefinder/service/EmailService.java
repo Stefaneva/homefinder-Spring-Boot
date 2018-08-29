@@ -21,7 +21,7 @@ public class EmailService {
 //        this.mailSender = mailSender;
 //    }
 
-    public void sendEmail(List<String> receivers, String text, String subject) throws MessagingException {
+    public void sendEmail(List<String> receivers, String subject,  String text) throws MessagingException {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
         if (receivers.size() > 0) {
