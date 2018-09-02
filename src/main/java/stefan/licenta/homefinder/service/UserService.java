@@ -1,5 +1,6 @@
 package stefan.licenta.homefinder.service;
 
+import org.apache.avro.generic.GenericData;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -300,12 +301,23 @@ public class UserService {
     }
 
     public void deleteAdById(Long adId) {
-        List<User> userList = eventRepository.findAllUsersAtAd(adRepository.findById(adId).get());
+        Ad ad = adRepository.findById(adId).get();
+        List<User> userList = eventRepository.findAllUsersAtAd(ad);
+        List<String> userEmails = new ArrayList<>();
         for(User i : userList) {
             i.setNotification(2L);
             userRepository.save(i);
+            userEmails.add(i.getEmail());
+            try {
+                emailService.sendEmail(userEmails,"Programare anulata"
+                        , "Cu parere de rau, te informam ca programarea ta a fost anulata" +
+                                " deaoarece anuntul " + ad.getTitle() + " a fost sters!");
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
         }
         adRepository.deleteById(adId);
+
     }
 
     public List<AdDto> getAllFavorites(String userEmail) {
