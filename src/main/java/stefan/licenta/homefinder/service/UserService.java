@@ -341,8 +341,9 @@ public class UserService {
         favoriteRepository.save(favorite);
     }
 
-    public void deleteFavorite(Long favoriteId) {
-        favoriteRepository.deleteById(favoriteId);
+    public void deleteFavorite(Long favoriteAdId) {
+//        favoriteRepository.deleteById(favoriteId);
+        favoriteRepository.deleteByAdAdId(favoriteAdId);
     }
 
     public List<ReviewDtoRequest> getAdReviews(Long adId) {

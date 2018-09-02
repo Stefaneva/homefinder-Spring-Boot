@@ -14,4 +14,6 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
 
     @Query("select a from Favorite f join f.ad a where f.user = ?1")
     List<Ad> getAllFavouriteAdsByUser(User user);
+
+    void deleteByAdAdId(Long ad_adId);
 }
