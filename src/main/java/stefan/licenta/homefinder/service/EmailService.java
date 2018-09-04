@@ -27,7 +27,7 @@ public class EmailService {
         if (receivers.size() > 0) {
             mimeMessageHelper.setTo(receivers.get(0));
             mimeMessageHelper.setSubject(subject);
-            if (receivers.size() > 0) {
+            if (receivers.size() > 1) {
                 receivers.remove(0);
                 mimeMessageHelper.setBcc(receivers.toArray(new String[0]));
             }
