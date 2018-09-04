@@ -395,7 +395,8 @@ public class UserService {
     public void saveEvent(EventDtoDate eventDto) throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy, HH:mm:ss");
         Event event = new Event();
-        event.setAd(adRepository.findById(eventDto.getAdId()).get());
+        Ad ad = adRepository.findById(eventDto.getAdId()).get();
+        event.setAd(ad);
         event.setUser(userRepository.findByEmail(eventDto.getUserEmail()));
         event.setStatus(eventDto.getStatus());
         event.setMessage(eventDto.getMessage());
@@ -408,11 +409,12 @@ public class UserService {
         List<String> receivers = new ArrayList<>();
         receivers.add(eventDto.getUserEmail());
         try {
-            emailService.sendEmail(receivers,"Programare vizita" , "Programarea vizitei a fost inregistrata cu succes!");
+            emailService.sendEmail(receivers,"Programare vizita" , "Programarea vizitei la " + ad.getTitle()
+                    + " a fost inregistrata cu succes!");
             receivers.remove(0);
             receivers.add(user.getEmail());
             emailService.sendEmail(receivers, "Programare noua", "Buna " + user.getEmail() + "!"
-                    + "\n" + "O noua programare asteapta confirmarea ta!");
+                    + "\n" + "O noua programare la " + ad.getTitle() + " asteapta confirmarea ta!");
         } catch (MessagingException e) {
             e.printStackTrace();
         }
@@ -444,7 +446,7 @@ public class UserService {
         users.add(user.getEmail());
         try {
             emailService.sendEmail(users, "Update programare " + ad.getTitle(),
-                    "Buna " + event.getUser().getUsername() + "!" + "\n" + "Programarea ta a fost refuzata");
+                    "Buna " + event.getUser().getUsername() + "!" + "\n" + "Cu parere de rau te informam ca programarea ta a fost refuzata.");
         } catch (MessagingException e) {
             e.printStackTrace();
         }
@@ -467,7 +469,7 @@ public class UserService {
         users.add(user.getEmail());
         try {
             emailService.sendEmail(users, "Update programare " + ad.getTitle(),
-                    "Buna " + event.getUser().getUsername() + "!" + "\n" + "Programarea ta a fost acceptata");
+                    "Buna " + event.getUser().getUsername() + "!" + "\n" + "Dorim sa te informama ca programarea ta a fost acceptata.");
         } catch (MessagingException e) {
             e.printStackTrace();
         }
