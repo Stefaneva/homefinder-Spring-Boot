@@ -79,7 +79,7 @@ public class UserController {
         newAdDto.setDescription(description);
         newAdDto.setAdItemType(adItemType);
         newAdDto.setAdType(adType);
-        newAdDto.setPrice(Integer.parseInt(price));
+        newAdDto.setPrice(Double.parseDouble(price));
         newAdDto.setRooms(Integer.parseInt(rooms));
         newAdDto.setSurface(Integer.parseInt(surface));
         newAdDto.setLat(Double.parseDouble(lat));

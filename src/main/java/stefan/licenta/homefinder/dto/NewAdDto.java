@@ -14,7 +14,7 @@ public class NewAdDto {
     private String title;
     private String adType;
     private String description;
-    private Integer price;
+    private Double price;
     private Integer surface;
     private Integer rooms;
     private String adItemType;

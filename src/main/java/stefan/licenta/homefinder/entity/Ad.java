@@ -44,7 +44,7 @@ public class Ad {
     private Integer surface;
 
     @Column(name = "pret")
-    private Integer price;
+    private Double price;
 
     @Column(name = "lat")
     private Double lat;
