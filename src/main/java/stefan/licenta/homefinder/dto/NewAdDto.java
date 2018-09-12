@@ -25,7 +25,7 @@ public class NewAdDto {
     private Integer comfort;
     private String furnished;
     private String floorLevel;
-    private Integer areaSurface;
+    private Double areaSurface;
     private Integer yearBuilt;
     private String location;
     private List<MultipartFile> uploadFiles;

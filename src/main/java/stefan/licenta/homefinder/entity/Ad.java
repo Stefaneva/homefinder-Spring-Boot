@@ -60,7 +60,7 @@ public class Ad {
     private Date date;
 
     @Column(name = "suprafatateren")
-    private Integer areaSurface;
+    private Double areaSurface;
 
     @Column(name = "confort")
     private Integer comfort;

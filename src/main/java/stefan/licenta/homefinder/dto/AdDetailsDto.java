@@ -28,7 +28,7 @@ public class AdDetailsDto {
     private Integer comfort;
     private String furnished;
     private String floorLevel;
-    private Integer areaSurface;
+    private Double areaSurface;
     private Integer yearBuilt;
     private Double avgAdReview;
 }

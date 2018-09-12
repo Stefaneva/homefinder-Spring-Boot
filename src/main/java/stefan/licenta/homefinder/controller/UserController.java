@@ -68,7 +68,7 @@ public class UserController {
                                 @RequestParam("partitioning") String partitioning,
                                 @RequestParam("comfort") Integer comfort,
                                 @RequestParam("floorLevel") String floorLevel,
-                                @RequestParam("areaSurface") Integer areaSurface,
+                                @RequestParam("areaSurface") Double areaSurface,
                                 @RequestParam("yearBuilt") Integer yearBuilt,
                                 @RequestParam("furnished") String furnished,
                                 @RequestParam("location") String location) throws IOException {
