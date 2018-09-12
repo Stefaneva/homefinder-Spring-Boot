@@ -135,6 +135,7 @@ public class UserService {
         newAd.setFurnished(newAdDto.getFurnished());
         newAd.setYearBuilt(newAdDto.getYearBuilt());
         newAd.setLocation(newAdDto.getLocation());
+        System.out.println(newAd.getSurface() + " save ad ");
         if(newAdDto.getUploadFiles().size() > 0) {
             this.saveImages(newAdDto.getUploadFiles(), newAd);
         }

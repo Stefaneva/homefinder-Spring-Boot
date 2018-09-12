@@ -68,7 +68,7 @@ public class UserController {
                                 @RequestParam("partitioning") String partitioning,
                                 @RequestParam("comfort") Integer comfort,
                                 @RequestParam("floorLevel") String floorLevel,
-                                @RequestParam("areaSurface") Double areaSurface,
+                                @RequestParam("areaSurface") String areaSurface,
                                 @RequestParam("yearBuilt") Integer yearBuilt,
                                 @RequestParam("furnished") String furnished,
                                 @RequestParam("location") String location) throws IOException {
@@ -89,10 +89,11 @@ public class UserController {
         newAdDto.setPartitioning(partitioning);
         newAdDto.setComfort(comfort);
         newAdDto.setFloorLevel(floorLevel);
-        newAdDto.setAreaSurface(areaSurface);
+        newAdDto.setAreaSurface(Double.parseDouble(areaSurface));
         newAdDto.setFurnished(furnished);
         newAdDto.setYearBuilt(yearBuilt);
         newAdDto.setLocation(location);
+        System.out.println(newAdDto.getSurface() + " Controller ");
         userService.saveAdInfo(newAdDto);
     }
 
