@@ -18,7 +18,7 @@ public class AdDetailsDto {
     private String adType;
     private String description;
     private Double price;
-    private Integer surface;
+    private Double surface;
     private Integer rooms;
     private String adItemType;
     private Double lat;

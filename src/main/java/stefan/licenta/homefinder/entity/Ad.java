@@ -41,7 +41,7 @@ public class Ad {
     private Integer roomNumber;
 
     @Column(name = "suprafata")
-    private Integer surface;
+    private Double surface;
 
     @Column(name = "pret")
     private Double price;
