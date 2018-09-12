@@ -135,7 +135,6 @@ public class UserService {
         newAd.setFurnished(newAdDto.getFurnished());
         newAd.setYearBuilt(newAdDto.getYearBuilt());
         newAd.setLocation(newAdDto.getLocation());
-        System.out.println(newAd.getSurface() + " save ad ");
         if(newAdDto.getUploadFiles().size() > 0) {
             this.saveImages(newAdDto.getUploadFiles(), newAd);
         }
@@ -470,7 +469,7 @@ public class UserService {
         users.add(user.getEmail());
         try {
             emailService.sendEmail(users, "Update programare " + ad.getTitle(),
-                    "Buna " + event.getUser().getUsername() + "!" + "\n" + "Dorim sa te informama ca programarea ta a fost acceptata.");
+                    "Buna " + event.getUser().getUsername() + "!" + "\n" + "Dorim sa te informam ca programarea ta a fost acceptata.");
         } catch (MessagingException e) {
             e.printStackTrace();
         }

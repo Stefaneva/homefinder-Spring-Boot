@@ -93,7 +93,6 @@ public class UserController {
         newAdDto.setFurnished(furnished);
         newAdDto.setYearBuilt(yearBuilt);
         newAdDto.setLocation(location);
-        System.out.println(newAdDto.getSurface() + " Controller ");
         userService.saveAdInfo(newAdDto);
     }
 
