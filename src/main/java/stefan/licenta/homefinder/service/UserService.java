@@ -347,7 +347,7 @@ public class UserService {
     }
 
     public List<ReviewDtoRequest> getAdReviews(Long adId) {
-        List<Review> reviewList = reviewRepository.findAllByAd(adRepository.findById(adId).get());
+        List<Review> reviewList = reviewRepository.findAllByAdOrderByIdDesc(adRepository.findById(adId).get());
         List<ReviewDtoRequest> reviewDtoRequestList = new ArrayList<>();
         for (Review review : reviewList) {
             ReviewDtoRequest reviewDtoRequest = ReviewDtoRequest.builder().idReview(review.getId())

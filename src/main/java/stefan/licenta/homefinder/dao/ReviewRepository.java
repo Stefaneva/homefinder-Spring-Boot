@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
-    List<Review> findAllByAd(Ad ad);
+    List<Review> findAllByAdOrderByIdDesc(Ad ad);
 
     @Query("select avg(r.rating) from Review r where r.ad = ?1")
     Double selectAvgReview(Ad ad);
